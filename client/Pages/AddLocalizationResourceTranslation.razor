@@ -1,0 +1,78 @@
+﻿@page "/add-localization-resource-translation"
+@layout MainLayout
+@inherits Cpdhelpdesk.Pages.AddLocalizationResourceTranslationComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using Cpdhelpdesk.Models.Authenticationconn
+@using Cpdhelpdesk.Models
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+@inject Microsoft.Extensions.Localization.IStringLocalizer<AddLocalizationResourceTranslation> L
+<PageTitle>Add Localization Resource Translation</PageTitle>
+<RadzenContent Container="main">
+  <ChildContent>
+    <div class="row">
+      <div class="col-md-12">
+        <RadzenTemplateForm Data="@localizationresourcetranslation" Visible="@(localizationresourcetranslation != null)" TItem="Cpdhelpdesk.Models.Authenticationconn.LocalizationResourceTranslation" Submit="@Form0Submit">
+          <ChildContent>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Text="@L["LanguageLabel.Text"]" Component="Language" style="width: 100%">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox MaxLength="10" style="display: block; width: 100%" @bind-Value="@(localizationresourcetranslation.Language)" Name="Language">
+                </RadzenTextBox>
+                <RadzenRequiredValidator Component="Language" Text="@L["LanguageRequiredValidator.Text"]" style="position: absolute">
+                </RadzenRequiredValidator>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Text="@L["ResourceIdLabel.Text"]" Component="ResourceId" style="width: 100%">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenDropDownDataGrid Data="@getLocalizationResourcesForResourceIdResult" TextProperty="Author" ValueProperty="Id" Placeholder="@L["ResourceId.Placeholder"]" ShowSearch="false" Count="@getLocalizationResourcesForResourceIdCount" style="display: block; width: 100%" @bind-Value="@(localizationresourcetranslation.ResourceId)" Name="ResourceId" LoadData="@ResourceIdLoadData">
+                </RadzenDropDownDataGrid>
+                <RadzenRequiredValidator Component="ResourceId" Text="@L["ResourceIdRequiredValidator.Text"]" style="position: absolute" DefaultValue="0">
+                </RadzenRequiredValidator>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Text="@L["ValueLabel.Text"]" Component="Value" style="width: 100%">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox style="width: 100%" @bind-Value="@(localizationresourcetranslation.Value)" Name="Value">
+                </RadzenTextBox>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Text="@L["ModificationDateLabel.Text"]" Component="ModificationDate" style="width: 100%">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenDatePicker DateFormat="MM/dd/yyyy" style="display: block; width: 100%" @bind-Value="@(localizationresourcetranslation.ModificationDate)" Name="ModificationDate">
+                </RadzenDatePicker>
+                <RadzenRequiredValidator Component="ModificationDate" Text="@L["ModificationDateRequiredValidator.Text"]" style="position: absolute">
+                </RadzenRequiredValidator>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col offset-sm-3">
+                <RadzenButton ButtonType="ButtonType.Submit" Icon="save" Text="@L["button1.Text"]" ButtonStyle="ButtonStyle.Primary">
+                </RadzenButton>
+                <RadzenButton ButtonStyle="ButtonStyle.Light" style="margin-left: 1rem" Text="@L["button2.Text"]" Click="@Button2Click">
+                </RadzenButton>
+              </div>
+            </div>
+          </ChildContent>
+        </RadzenTemplateForm>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>
