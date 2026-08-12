@@ -1,0 +1,55 @@
+<RadzenCard class="flip-card">
+<div class="get-started-section__card-number">
+<span>@data.sprModulecatid</span>
+</div>
+<div class="get-started-section">
+<div class="get-started-section__cards">
+<div class="flip-card-inner">
+<div class="flip-card-front">
+mostafa front  put here what you want 
+<br/>
+<br/>
+</div>
+  
+ <div class="flip-card-back">
+  <button class="flip-card get-started-section__card" >
+  <h3 class="get-started-section__card-heading"> <small>Make it yours</small> <span>Import your data</span></h3> 
+  
+  
+  
+  
+  <div class="get-started-section__card-graphic" >
+  <img src="@data.photopath" style="width:300px"/>
+  </div>
+  <div class="get-started-section__card-button">
+                            Learn how
+                        </div> 
+						
+						
+						
+
+                                
+                                </button>
+  
+  </div>  
+  
+ 
+ 
+ 
+ </div>  
+ 
+
+
+
+
+
+
+
+ </div> 
+   </div> 
+
+                                
+                                
+                                
+                                  
+ </RadzenCard>
