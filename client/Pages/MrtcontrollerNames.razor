@@ -1,0 +1,64 @@
+﻿@page "/mrtcontroller-names"
+@layout MainLayout
+@inherits Cpdhelpdesk.Pages.MrtcontrollerNamesComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using Cpdhelpdesk.Models.Authenticationconn
+@using Cpdhelpdesk.Models
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+@inject Microsoft.Extensions.Localization.IStringLocalizer<MrtcontrollerNames> L
+<PageTitle>Mrtcontroller Names</PageTitle>
+<RadzenContent Container="main">
+  <ChildContent>
+    <RadzenHeading Size="H1" Text="@L["pageTitle.Text"]">
+    </RadzenHeading>
+    <div class="row">
+      <div class="col-md-12">
+        <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px" Text="@L["button0.Text"]" Click="@Button0Click">
+        </RadzenButton>
+        <RadzenSplitButton Icon="get_app" style="margin-left: 10px; margin-bottom: 10px" Text="@L["splitbutton0.Text"]" Click="@Splitbutton0Click">
+          <ChildContent>
+            <RadzenSplitButtonItem Text="@L["splitbutton0.excel.Text"]" Value="xlsx">
+            </RadzenSplitButtonItem>
+            <RadzenSplitButtonItem Text="@L["splitbutton0.csv.Text"]" Value="csv">
+            </RadzenSplitButtonItem>
+          </ChildContent>
+        </RadzenSplitButton>
+        <RadzenTextBox Placeholder="@L["textbox0.Placeholder"]" style="display: block; margin-bottom: 10px; width: 100%" Name="Textbox0" @oninput="@(async(args) => {search = $"{args.Value}";await grid0.GoToPage(0);await grid0.Reload();})">
+        </RadzenTextBox>
+        <RadzenDataGrid @ref="grid0" AllowFiltering="true" FilterMode="Radzen.FilterMode.Advanced" AllowPaging="true" AllowSorting="true" Data="@getMrtcontrollerNamesResult" Count="@getMrtcontrollerNamesCount" TItem="Cpdhelpdesk.Models.Authenticationconn.MrtcontrollerName" LoadData="@Grid0LoadData" RowDoubleClick="@Grid0RowDoubleClick">
+          <Columns>
+            <RadzenDataGridColumn TItem="Cpdhelpdesk.Models.Authenticationconn.MrtcontrollerName" Property="controllerNameid" Title="@L["grid0.controllerNameid.Title"]">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Cpdhelpdesk.Models.Authenticationconn.MrtcontrollerName" Property="controllerName" Title="@L["grid0.controllerName.Title"]">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Cpdhelpdesk.Models.Authenticationconn.MrtcontrollerName" Property="ReportCode" Title="@L["grid0.ReportCode.Title"]">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Cpdhelpdesk.Models.Authenticationconn.MrtcontrollerName" Property="Notes" Title="@L["grid0.Notes.Title"]">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Cpdhelpdesk.Models.Authenticationconn.MrtcontrollerName" Property="Notes1" Title="@L["grid0.Notes1.Title"]">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Cpdhelpdesk.Models.Authenticationconn.MrtcontrollerName" Property="mynotes" Title="@L["grid0.mynotes.Title"]">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Cpdhelpdesk.Models.Authenticationconn.MrtcontrollerName" Property="ModifiedBy" Title="@L["grid0.ModifiedBy.Title"]">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Cpdhelpdesk.Models.Authenticationconn.MrtcontrollerName" Property="ModifiedOn" FormatString="{0:MM/dd/yyyy}" Title="@L["grid0.ModifiedOn.Title"]">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Cpdhelpdesk.Models.Authenticationconn.MrtcontrollerName" Property="CreatedBy" Title="@L["grid0.CreatedBy.Title"]">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Cpdhelpdesk.Models.Authenticationconn.MrtcontrollerName" Property="CreatedOn" FormatString="{0:MM/dd/yyyy}" Title="@L["grid0.CreatedOn.Title"]">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Cpdhelpdesk.Models.Authenticationconn.MrtcontrollerName" Filterable="false" Sortable="false" Width="70px" TextAlign="TextAlign.Center">
+              <Template Context="cpdhelpdeskModelsAuthenticationconnMrtcontrollerName">
+                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@((args) =>GridDeleteButtonClick(args, cpdhelpdeskModelsAuthenticationconnMrtcontrollerName))" @onclick:stopPropagation="true">
+                </RadzenButton>
+              </Template>
+            </RadzenDataGridColumn>
+          </Columns>
+        </RadzenDataGrid>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>
