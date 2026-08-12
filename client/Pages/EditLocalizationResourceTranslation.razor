@@ -1,0 +1,98 @@
+﻿@page "/edit-localization-resource-translation/{Id}"
+@layout MainLayout
+@inherits Cpdhelpdesk.Pages.EditLocalizationResourceTranslationComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using Cpdhelpdesk.Models.Authenticationconn
+@using Cpdhelpdesk.Models
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+@inject Microsoft.Extensions.Localization.IStringLocalizer<EditLocalizationResourceTranslation> L
+<PageTitle>Edit Localization Resource Translation</PageTitle>
+<RadzenContent Container="main">
+  <ChildContent>
+    <div  class="row">
+      <div class="col-md-9">
+        <RadzenLabel style="font-weight: bold" Text="@L["closeLabel.Text"]" Visible="@(!canEdit)">
+        </RadzenLabel>
+      </div>
+      <div class="col-md-3">
+        <RadzenButton ButtonStyle="ButtonStyle.Secondary" style="margin-bottom: 20px" Text="@L["closeButton.Text"]" Visible="@(!canEdit)" Click="@CloseButtonClick">
+        </RadzenButton>
+      </div>
+    </div>
+    <div  class="row">
+      <div class="col-md-9">
+        <RadzenLabel style="font-weight: bold" Text="@L["label0.Text"]" Visible="@hasChanges">
+        </RadzenLabel>
+      </div>
+      <div class="col-md-3">
+        <RadzenButton ButtonStyle="ButtonStyle.Secondary" Icon="autorenew" style="margin-bottom: 20px" Text="@L["button0.Text"]" Visible="@hasChanges" Click="@Button0Click">
+        </RadzenButton>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <RadzenTemplateForm TItem="Cpdhelpdesk.Models.Authenticationconn.LocalizationResourceTranslation" Data="@localizationresourcetranslation" Visible="@(localizationresourcetranslation != null && canEdit)" Submit="@Form0Submit">
+          <ChildContent>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Text="@L["LanguageLabel.Text"]" Component="Language" style="width: 100%">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox MaxLength="10" style="display: block; width: 100%" @bind-Value="@(localizationresourcetranslation.Language)" Name="Language">
+                </RadzenTextBox>
+                <RadzenRequiredValidator Component="Language" Text="@L["LanguageRequiredValidator.Text"]" style="position: absolute">
+                </RadzenRequiredValidator>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Text="@L["ResourceIdLabel.Text"]" Component="ResourceId" style="width: 100%">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenDropDownDataGrid Data="@getLocalizationResourcesForResourceIdResult" TextProperty="Author" ValueProperty="Id" Placeholder="@L["ResourceId.Placeholder"]" ShowSearch="false" Count="@getLocalizationResourcesForResourceIdCount" @bind-Value="@(localizationresourcetranslation.ResourceId)" style="display: block; width: 100%" SelectedValue="@getByLocalizationResourcesForResourceIdResult" Name="ResourceId" LoadData="@ResourceIdLoadData">
+                </RadzenDropDownDataGrid>
+                <RadzenRequiredValidator Component="ResourceId" Text="@L["ResourceIdRequiredValidator.Text"]" style="position: absolute" DefaultValue="0">
+                </RadzenRequiredValidator>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Text="@L["ValueLabel.Text"]" Component="Value" style="width: 100%">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox style="width: 100%" @bind-Value="@(localizationresourcetranslation.Value)" Name="Value">
+                </RadzenTextBox>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Text="@L["ModificationDateLabel.Text"]" Component="ModificationDate" style="width: 100%">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenDatePicker DateFormat="MM/dd/yyyy" style="display: block; width: 100%" @bind-Value="@(localizationresourcetranslation.ModificationDate)" Name="ModificationDate">
+                </RadzenDatePicker>
+                <RadzenRequiredValidator Component="ModificationDate" Text="@L["ModificationDateRequiredValidator.Text"]" style="position: absolute">
+                </RadzenRequiredValidator>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col offset-sm-3">
+                <RadzenButton ButtonType="ButtonType.Submit" Icon="save" Text="@L["button3.Text"]" ButtonStyle="ButtonStyle.Primary">
+                </RadzenButton>
+                <RadzenButton ButtonStyle="ButtonStyle.Light" style="margin-left: 1rem" Text="@L["button4.Text"]" Click="@Button4Click">
+                </RadzenButton>
+              </div>
+            </div>
+          </ChildContent>
+        </RadzenTemplateForm>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>
