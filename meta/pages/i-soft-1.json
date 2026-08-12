@@ -1,0 +1,161 @@
+{
+  "access": "Authenticated",
+  "components": [
+    {
+      "components": [
+        {
+          "components": [
+            {
+              "class": "col-md-12",
+              "components": [
+                {
+                  "attributes": [
+                    {
+                      "name": "Top",
+                      "value": "0px"
+                    },
+                    {
+                      "name": "min-width",
+                      "value": "250px"
+                    },
+                    {
+                      "name": "clas",
+                      "value": "profilemenumos"
+                    }
+                  ],
+                  "name": "profilemenu0",
+                  "style": {
+                    "display": "inline-block",
+                    "float": "right",
+                    "height": "39px",
+                    "marginTop": "1px",
+                    "width": "200px"
+                  },
+                  "template": [
+                    {
+                      "text": "${Security.User?.Name}",
+                      "type": "label"
+                    }
+                  ],
+                  "type": "profilemenu",
+                  "visible": "${Security.IsAuthenticated()}"
+                },
+                {
+                  "attributes": [
+                    {
+                      "name": "class",
+                      "value": "Headerbartest"
+                    }
+                  ],
+                  "name": "pageTitle",
+                  "size": "H1",
+                  "style": {
+                    "textAlign": "center"
+                  },
+                  "text": "",
+                  "type": "heading"
+                }
+              ],
+              "name": "col0",
+              "type": "col"
+            }
+          ],
+          "name": "row0",
+          "type": "row"
+        },
+        {
+          "attributes": [],
+          "components": [
+            {
+              "attributes": [],
+              "class": "col-md-12",
+              "components": [
+                {
+                  "allowPaging": true,
+                  "attributes": [
+                    {
+                      "name": "class",
+                      "value": "slide-container-section__slide-main get-started-section"
+                    }
+                  ],
+                  "count": "${getsoftcatcount}",
+                  "data": "${getsoftcategory}",
+                  "events": {
+                    "loadData": [
+                      {
+                        "name": "authenticationconn.getSoftwareModulescatlists",
+                        "then": [
+                          {
+                            "name": "getsoftcategory",
+                            "type": "set",
+                            "value": "${result.Value}",
+                            "valueType": "IEnumerable<Cpdhelpdesk.Models.Authenticationconn.SoftwareModulescatlist>"
+                          },
+                          {
+                            "name": "getsoftcatcount",
+                            "type": "set",
+                            "value": "${result.Count}",
+                            "valueType": "int"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ]
+                  },
+                  "itemType": "Cpdhelpdesk.Models.Authenticationconn.SoftwareModulescatlist",
+                  "name": "datalist0",
+                  "pageSize": 98,
+                  "style": {
+                    "display": "flex"
+                  },
+                  "template": "<RadzenCard class=\"flip-card\">\n\n<div class=\"get-started-section\">\n<div class=\"get-started-section__cards\">\n<div class=\"get-started-section__card-number\">\n<span>@data.sprModulecatid</span>\n</div>\n<div class=\"flip-card-inner\">\n\n<div class=\"flip-card-front\">\n\n<div class=\"first hero\">\n  <img class=\"hero-profile-img\" src=\"@data.photopath\" alt=\"\" />\n  <div class=\"hero-description-bk\"></div>\n  <div class=\"hero-logo\">\n      <img src=\"assets/images/cpd_logo.png\" alt=\"\" />\n  </div>\n  <div class=\"hero-description\">\n    <p> @data.FuturecatDesc1  </p>\n  </div>\n  \n  \n\n\n \n</div>\n\n\n\n\n</div>\n  \n <div class=\"flip-card-back\">\n <div class=\"secondary hero\">\n  <img class=\"hero-profile-img\" src=\"@data.photopath\" alt=\"\" />\n  <div class=\"hero-description-bk\"></div>\n  <div class=\"hero-description-mos\">\n  <p> @data.FuturecatDesc  </p>\n  </div>\n  <div class=\"hero-logo\">\n      <img src=\"assets/images/cpd_logo.png\" alt=\"\" />\n  </div>\n \n  <div class=\"hero-btn1\">\n  \n   <!-- <a href=\"@data.FuturecatDesc\" target='_blank'>  <div class=\"get-started-section__card-button\"><h3> @data.sprModulecatDesc </h3></div></a> -->\n\t<!--<button href=\"@data.FuturecatDesc\" target='_blank'\t>@data.sprModulecatDesc</button>\t-->\n    <div class=\"buttons\">\n    <button  class=\"btn-hover color-8\"><a href=\"@data.FuturecatDesc\" target='_blank'>@data.sprModulecatDesc</a></button>\n    </div>\n</div>\n  \n \t\t\t\t\t\t\n\t\t\t\t\t\t\n </div>\n                                \n                             \n  \n  </div>  \n  \n \n \n \n </div>  \n \n\n\n\n\n\n\n\n </div> \n   </div> \n\n                                \n                                \n                                \n                                  \n </RadzenCard>",
+                  "type": "datalist",
+                  "wrapItems": true
+                }
+              ],
+              "type": "col"
+            }
+          ],
+          "type": "row"
+        }
+      ],
+      "container": "main",
+      "type": "content"
+    },
+    {
+      "style": {
+        "backgroundColor": "#414141",
+        "border": "1px solid rgba(0, 0, 0, 0)",
+        "color": "#414141",
+        "display": "block",
+        "float": "none",
+        "fontWeight": "bold",
+        "height": "1227px",
+        "position": "absolute",
+        "visibility": "visible",
+        "width": "251px",
+        "zIndex": "3"
+      }
+    },
+    {
+      "style": {
+        "backgroundColor": "#414141",
+        "border": "1px solid rgba(0, 0, 0, 0)",
+        "color": "#414141",
+        "display": "block",
+        "float": "none",
+        "fontWeight": "bold",
+        "height": "1227px",
+        "position": "absolute",
+        "visibility": "visible",
+        "width": "251px",
+        "zIndex": "3"
+      }
+    }
+  ],
+  "events": {
+    "load": []
+  },
+  "layout": "landingpage",
+  "name": "ISoft1"
+}
