@@ -1,0 +1,71 @@
+﻿@page "/ic-software-modulescatlist-2"
+@layout WidelayoutLayout
+@inherits Cpdhelpdesk.Pages.IcSoftwareModulescatlist2Component
+
+@using Radzen
+@using Radzen.Blazor
+@using Cpdhelpdesk.Models.Authenticationconn
+@using Cpdhelpdesk.Models
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+@inject Microsoft.Extensions.Localization.IStringLocalizer<IcSoftwareModulescatlist2> L
+<PageTitle>ICSoftwareModulescatlist2</PageTitle>
+<RadzenContent Container="main">
+  <ChildContent>
+    <RadzenHeading Size="H1" style="text-align: center" Text="@L["pageTitle.Text"]">
+    </RadzenHeading>
+    <div class="row">
+      <div class="col-md-12">
+        <RadzenDataList @ref="datalist0" AllowPaging="true" Count="@getsoftcatcount" Data="@getsoftcategory" TItem="Cpdhelpdesk.Models.Authenticationconn.SoftwareModulescatlist" PageSize="98" style="display: inline-block" WrapItems="true" LoadData="@Datalist0LoadData">
+          <Template Context="data">
+          <section class="flipping-cards">
+                  <div class="flipping-card-wrapper">
+                      <div class="flipping-card-item-wrapper">
+                          <div class="flipping-card-item-side flipping-card-item-side-front">
+                              <img src="/img/html-css-flipping-card-1.png" alt="" class="flipping-card-item-img">
+                          </div>
+                          <div class="flipping-card-item-side flipping-card-item-side-back">
+                              <div class="flipping-card-back-wrapper">
+                                  <p>Hello I am learning how to create flipping cards using HTML & CSS, will you mind joining me?</p>
+                                  <button class="flipping-card-back-wrapper__btn">Read More</button>
+                              </div>
+                          </div>
+                      </div>
+          
+                      <div class="flipping-card-item-wrapper">
+                          <div class="flipping-card-item-side flipping-card-item-side-front">
+                              <img src="/img/html-css-flipping-card-2.png" alt="" class="flipping-card-item-img">
+                          </div>
+                          <div class="flipping-card-item-side flipping-card-item-side-back">
+                              <div class="flipping-card-back-wrapper">
+                                  <p>Hello I am learning how to create flipping cards using HTML & CSS, will you mind joining me?</p>
+                                  <button class="flipping-card-back-wrapper__btn">Read More</button>
+                              </div>
+                          </div>
+                      </div>
+          
+                      <div class="flipping-card-item-wrapper">
+                          <div class="flipping-card-item-side flipping-card-item-side-front">
+                              <img src="/img/html-css-flipping-card-3.png" alt="" class="flipping-card-item-img">
+                          </div>
+                          <div class="flipping-card-item-side flipping-card-item-side-back">
+                              <div class="flipping-card-back-wrapper">
+                                  <p>Hello I am learning how to create flipping cards using HTML & CSS, will you mind joining me?</p>
+                                  <button class="flipping-card-back-wrapper__btn">Read More</button>
+                              </div>
+          
+                          </div>
+                      </div>
+                  </div>
+                 
+              </section>
+          
+          
+          </Template>
+        </RadzenDataList>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>
+
+
