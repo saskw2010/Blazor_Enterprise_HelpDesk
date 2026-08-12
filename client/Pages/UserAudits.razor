@@ -1,0 +1,54 @@
+﻿@page "/user-audits"
+@layout MainLayout
+@inherits Cpdhelpdesk.Pages.UserAuditsComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using Cpdhelpdesk.Models.Authenticationconn
+@using Cpdhelpdesk.Models
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+@inject Microsoft.Extensions.Localization.IStringLocalizer<UserAudits> L
+<PageTitle>User Audits</PageTitle>
+<RadzenContent Container="main">
+  <ChildContent>
+    <RadzenHeading Size="H1" Text="@L["pageTitle.Text"]">
+    </RadzenHeading>
+    <div class="row">
+      <div class="col-md-12">
+        <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px" Text="@L["button0.Text"]" Click="@Button0Click">
+        </RadzenButton>
+        <RadzenSplitButton Icon="get_app" style="margin-left: 10px; margin-bottom: 10px" Text="@L["splitbutton0.Text"]" Click="@Splitbutton0Click">
+          <ChildContent>
+            <RadzenSplitButtonItem Text="@L["splitbutton0.excel.Text"]" Value="xlsx">
+            </RadzenSplitButtonItem>
+            <RadzenSplitButtonItem Text="@L["splitbutton0.csv.Text"]" Value="csv">
+            </RadzenSplitButtonItem>
+          </ChildContent>
+        </RadzenSplitButton>
+        <RadzenTextBox Placeholder="@L["textbox0.Placeholder"]" style="display: block; margin-bottom: 10px; width: 100%" Name="Textbox0" @oninput="@(async(args) => {search = $"{args.Value}";await grid0.GoToPage(0);await grid0.Reload();})">
+        </RadzenTextBox>
+        <RadzenDataGrid @ref="grid0" AllowFiltering="true" FilterMode="Radzen.FilterMode.Advanced" AllowPaging="true" AllowSorting="true" Data="@getUserAuditsResult" Count="@getUserAuditsCount" TItem="Cpdhelpdesk.Models.Authenticationconn.UserAudit" LoadData="@Grid0LoadData" RowDoubleClick="@Grid0RowDoubleClick">
+          <Columns>
+            <RadzenDataGridColumn TItem="Cpdhelpdesk.Models.Authenticationconn.UserAudit" Property="UserAuditId" Title="@L["grid0.UserAuditId.Title"]">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Cpdhelpdesk.Models.Authenticationconn.UserAudit" Property="UserId" Title="@L["grid0.UserId.Title"]">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Cpdhelpdesk.Models.Authenticationconn.UserAudit" Property="Timestamp" Title="@L["grid0.Timestamp.Title"]">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Cpdhelpdesk.Models.Authenticationconn.UserAudit" Property="AuditEvent" Title="@L["grid0.AuditEvent.Title"]">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Cpdhelpdesk.Models.Authenticationconn.UserAudit" Property="IpAddress" Title="@L["grid0.IpAddress.Title"]">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Cpdhelpdesk.Models.Authenticationconn.UserAudit" Filterable="false" Sortable="false" Width="70px" TextAlign="TextAlign.Center">
+              <Template Context="cpdhelpdeskModelsAuthenticationconnUserAudit">
+                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@((args) =>GridDeleteButtonClick(args, cpdhelpdeskModelsAuthenticationconnUserAudit))" @onclick:stopPropagation="true">
+                </RadzenButton>
+              </Template>
+            </RadzenDataGridColumn>
+          </Columns>
+        </RadzenDataGrid>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>
