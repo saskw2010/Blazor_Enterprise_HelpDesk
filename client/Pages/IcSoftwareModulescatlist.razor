@@ -1,0 +1,77 @@
+﻿@page "/ic-software-modulescatlist"
+@layout WidelayoutLayout
+@inherits Cpdhelpdesk.Pages.IcSoftwareModulescatlistComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using Cpdhelpdesk.Models.Authenticationconn
+@using Cpdhelpdesk.Models
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+@inject Microsoft.Extensions.Localization.IStringLocalizer<IcSoftwareModulescatlist> L
+<PageTitle>ICSoftwareModulescatlist</PageTitle>
+<RadzenContent Container="main">
+  <ChildContent>
+    <RadzenHeading Size="H1" Text="@L["pageTitle.Text"]">
+    </RadzenHeading>
+    <div class="row">
+      <div class="col-md-12">
+        <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px" Text="@L["button0.Text"]" Click="@Button0Click">
+        </RadzenButton>
+        <RadzenSplitButton Icon="get_app" style="margin-bottom: 10px; margin-left: 10px" Text="@L["splitbutton0.Text"]" Click="@Splitbutton0Click">
+          <ChildContent>
+            <RadzenSplitButtonItem Text="@L["splitbutton0.excel.Text"]" Value="xlsx">
+            </RadzenSplitButtonItem>
+            <RadzenSplitButtonItem Text="@L["splitbutton0.csv.Text"]" Value="csv">
+            </RadzenSplitButtonItem>
+          </ChildContent>
+        </RadzenSplitButton>
+        <RadzenTextBox Placeholder="@L["textbox0.Placeholder"]" style="display: block; margin-bottom: 10px; width: 100%" Name="Textbox0" @oninput="@(async(args) => {search = $"{args.Value}";await grid0.GoToPage(0);await grid0.Reload();})">
+        </RadzenTextBox>
+        <RadzenDataGrid @ref="grid0" AllowFiltering="true" AllowPaging="true" AllowSorting="true" AllowVirtualization="true" Count="@getSoftwareModulescatlistsCount" Data="@getSoftwareModulescatlistsResult" FilterMode="Radzen.FilterMode.Advanced" TItem="Cpdhelpdesk.Models.Authenticationconn.SoftwareModulescatlist" PageSize="100" PagerPosition="PagerPosition.Top" style="display: flex" LoadData="@Grid0LoadData" RowSelect="@Grid0RowSelect">
+          <Columns>
+            <RadzenDataGridColumn TItem="Cpdhelpdesk.Models.Authenticationconn.SoftwareModulescatlist" Property="sprModulecatid" Title="@L["grid0.sprModulecatid.Title"]">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Cpdhelpdesk.Models.Authenticationconn.SoftwareModulescatlist" Property="sprModulecatDesc" Title="@L["grid0.sprModulecatDesc.Title"]">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Cpdhelpdesk.Models.Authenticationconn.SoftwareModulescatlist" Property="sprModulecatDesc1" Title="@L["grid0.sprModulecatDesc1.Title"]">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Cpdhelpdesk.Models.Authenticationconn.SoftwareModulescatlist" Property="FuturecatDesc" Title="@L["grid0.FuturecatDesc.Title"]">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Cpdhelpdesk.Models.Authenticationconn.SoftwareModulescatlist" Property="FuturecatDesc1" Title="@L["grid0.FuturecatDesc1.Title"]">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Cpdhelpdesk.Models.Authenticationconn.SoftwareModulescatlist" Property="InstallcatModule" Title="@L["grid0.InstallcatModule.Title"]">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Cpdhelpdesk.Models.Authenticationconn.SoftwareModulescatlist" Property="photopath" Title="@L["grid0.photopath.Title"]">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Cpdhelpdesk.Models.Authenticationconn.SoftwareModulescatlist" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Width="70px">
+              <Template Context="cpdhelpdeskModelsAuthenticationconnSoftwareModulescatlist">
+                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@((args) =>GridDeleteButtonClick(args, cpdhelpdeskModelsAuthenticationconnSoftwareModulescatlist))" @onclick:stopPropagation="true">
+                </RadzenButton>
+              </Template>
+            </RadzenDataGridColumn>
+          </Columns>
+        </RadzenDataGrid>
+        <RadzenDataList @ref="datalist0" AllowPaging="true" Count="@getSoftwareModulescatlistsCount" Data="@getSoftwareModulescatlistsResult" TItem="Cpdhelpdesk.Models.Authenticationconn.SoftwareModulescatlist" PageSize="100" style="height: 506px; width: 851px" WrapItems="true">
+          <Template Context="data">
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                  <h3>@data.sprModulecatDesc</h3> 
+                <img src="@data.photopath" alt="Avatar" style="width:300px;height:300px;">
+              </div>
+              <div class="flip-card-back">
+                <h1>@data.FuturecatDesc</h1> 
+                <p>@data.FuturecatDesc</p> 
+                <p>@data.FuturecatDesc</p>
+              </div>
+            </div>
+          </div>
+          </Template>
+        </RadzenDataList>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>
+
+
