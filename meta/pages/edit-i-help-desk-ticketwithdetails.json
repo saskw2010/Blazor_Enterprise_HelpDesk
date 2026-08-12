@@ -1,0 +1,1265 @@
+{
+  "access": "Authenticated",
+  "components": [
+    {
+      "components": [
+        {
+          "name": "pageTitle",
+          "size": "H1",
+          "text": "Edit I Help Desk Ticketwithdetails",
+          "type": "heading"
+        },
+        {
+          "components": [
+            {
+              "class": "col-md-9",
+              "components": [
+                {
+                  "name": "closeLabel",
+                  "style": {
+                    "fontWeight": "bold"
+                  },
+                  "text": "Item no longer available.",
+                  "type": "label",
+                  "visible": "${!canEdit}"
+                }
+              ],
+              "name": "col0",
+              "type": "col"
+            },
+            {
+              "class": "col-md-3",
+              "components": [
+                {
+                  "buttonStyle": "secondary",
+                  "events": {
+                    "click": [
+                      {
+                        "path": "i-help-desk-ticketwithdetails",
+                        "type": "navigate"
+                      }
+                    ]
+                  },
+                  "icon": "",
+                  "name": "closeButton",
+                  "style": {
+                    "marginBottom": "20px",
+                    "width": "138.8125px"
+                  },
+                  "text": "Close",
+                  "type": "button",
+                  "visible": "${!canEdit}"
+                }
+              ],
+              "name": "col1",
+              "type": "col"
+            }
+          ],
+          "name": "row0",
+          "style": {},
+          "type": "row"
+        },
+        {
+          "components": [
+            {
+              "class": "col-md-9",
+              "components": [
+                {
+                  "name": "label0",
+                  "style": {
+                    "fontWeight": "bold"
+                  },
+                  "text": "Another user has made conflicting changes to one or more of the fields you have modified. Please reload.",
+                  "type": "label",
+                  "visible": "${hasChanges}"
+                }
+              ],
+              "name": "col0",
+              "type": "col"
+            },
+            {
+              "class": "col-md-3",
+              "components": [
+                {
+                  "buttonStyle": "secondary",
+                  "events": {
+                    "click": [
+                      {
+                        "code": "await this.Load()",
+                        "type": "execute"
+                      }
+                    ]
+                  },
+                  "icon": "autorenew",
+                  "name": "button0",
+                  "style": {
+                    "marginBottom": "20px"
+                  },
+                  "text": "Reload",
+                  "type": "button",
+                  "visible": "${hasChanges}"
+                }
+              ],
+              "name": "col1",
+              "type": "col"
+            }
+          ],
+          "name": "row0",
+          "style": {},
+          "type": "row"
+        },
+        {
+          "components": [
+            {
+              "class": "col-md-12",
+              "components": [
+                {
+                  "components": [
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "TicketGUID",
+                              "name": "TicketGUIDLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Ticket Guid",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "disabled": true,
+                              "maxLength": 500,
+                              "name": "TicketGUID",
+                              "style": {
+                                "width": "244.75px"
+                              },
+                              "type": "textbox",
+                              "value": "${helpdeskticket.TicketGUID}",
+                              "valueType": "string"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem",
+                        "visibility": "hidden"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "buttonStyle": "secondary",
+                              "events": {
+                                "click": [
+                                  {
+                                    "path": "i-help-desk-ticketwithdetails",
+                                    "type": "navigate"
+                                  }
+                                ]
+                              },
+                              "icon": "",
+                              "name": "Cancel",
+                              "style": {
+                                "display": "inline-block",
+                                "float": "left",
+                                "position": "relative",
+                                "width": "130.75px"
+                              },
+                              "template": "",
+                              "text": "MYPinding",
+                              "type": "button",
+                              "visible": "${Security.IsInRole(\"it\",\"cpdheldeskadmin\")}"
+                            }
+                          ],
+                          "name": "col4",
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "buttonStyle": "light",
+                              "events": {
+                                "click": [
+                                  {
+                                    "code": "string HelpDeskTicketId = Convert.ChangeType(Id, Type.GetTypeCode(typeof(string)));\n            var dialogResult = await DialogService.OpenAsync<AddHelpDeskTicketDetailmos>(\"Add Help Desk Ticket Detailmos\", new Dictionary<string, object>() { { \"HelpDeskTicketIdpar\", helpdeskticket.Id } });\n           \n           UriHelper.NavigateTo($\"edit-i-help-desk-ticketwithdetails/{helpdeskticket.Id}\",forceLoad:true);\n\n            // await datalist0.Reload();\n             // await InvokeAsync(StateHasChanged);\n            ///عاوز اجربها فقط بدون لود ",
+                                    "then": [],
+                                    "type": "execute"
+                                  }
+                                ]
+                              },
+                              "icon": "",
+                              "name": "button1",
+                              "style": {
+                                "backgroundColor": "#598087",
+                                "color": "#e6ecef",
+                                "marginLeft": "1rem",
+                                "width": "126.96875px"
+                              },
+                              "template": "",
+                              "text": "_Replay",
+                              "type": "button",
+                              "visible": "${Security.IsInRole(\"cpdheldeskadmin\")}"
+                            },
+                            {
+                              "buttonStyle": "light",
+                              "events": {
+                                "click": [
+                                  {
+                                    "code": "string HelpDeskTicketId = Convert.ChangeType(Id, Type.GetTypeCode(typeof(string)));\n            var dialogResult = await DialogService.OpenAsync<AddHelpDeskTicketDetailmos>(\"Add Help Desk Ticket Detailmos\", new Dictionary<string, object>() { { \"HelpDeskTicketIdpar\", helpdeskticket.Id } });\n           \n           UriHelper.NavigateTo($\"edit-i-help-desk-ticketwithdetails/{helpdeskticket.Id}\",forceLoad:true);\n\n            // await datalist0.Reload();\n             // await InvokeAsync(StateHasChanged);\n            ///عاوز اجربها فقط بدون لود ",
+                                    "type": "execute"
+                                  }
+                                ]
+                              },
+                              "icon": "",
+                              "name": "button2",
+                              "style": {
+                                "backgroundColor": "#598087",
+                                "color": "#e6ecef",
+                                "marginLeft": "1rem",
+                                "width": "126.96875px"
+                              },
+                              "text": "Replay",
+                              "type": "button",
+                              "visible": "${Security.IsInRole(\"it\")}"
+                            },
+                            {
+                              "buttonStyle": "primary",
+                              "buttonType": "submit",
+                              "icon": "save",
+                              "name": "button3",
+                              "style": {
+                                "marginLeft": "16px"
+                              },
+                              "text": "Save",
+                              "type": "button",
+                              "visible": "${Security.IsInRole(\"it\",\"cpdheldeskadmin\")}"
+                            },
+                            {
+                              "buttonStyle": "secondary",
+                              "events": {
+                                "click": [
+                                  {
+                                    "path": "icpdhelpdesk",
+                                    "type": "navigate"
+                                  }
+                                ]
+                              },
+                              "icon": "",
+                              "name": "button4",
+                              "style": {
+                                "display": "block",
+                                "float": "left",
+                                "position": "relative",
+                                "verticalAlign": "middle",
+                                "width": "117.8125px"
+                              },
+                              "template": "",
+                              "text": "Close",
+                              "type": "button",
+                              "visible": "${!Security.IsInRole(\"it\") && !Security.IsInRole(\"cpdheldeskadmin\")}"
+                            }
+                          ],
+                          "name": "col5",
+                          "style": {
+                            "marginBottom": "21px"
+                          },
+                          "type": "col"
+                        }
+                      ],
+                      "name": "row4",
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "TicketStatus",
+                              "name": "TicketStatusLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Help Desk Status",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "count": "${getHelpDeskStatusesForTicketStatusCount}",
+                              "data": "${getHelpDeskStatusesForTicketStatusResult}",
+                              "disabled": "${!Security.IsInRole(\"it\",\"cpdheldeskadmin\")}",
+                              "events": {
+                                "loadData": [
+                                  {
+                                    "name": "authenticationconn.getHelpDeskStatuses",
+                                    "parameters": [
+                                      {
+                                        "name": "$top",
+                                        "value": "${event.top}"
+                                      },
+                                      {
+                                        "name": "$skip",
+                                        "value": "${event.skip}"
+                                      },
+                                      {
+                                        "name": "$orderby",
+                                        "value": "${event.orderby}"
+                                      },
+                                      {
+                                        "name": "$filter",
+                                        "value": "${event.filter}"
+                                      },
+                                      {
+                                        "name": "$count",
+                                        "value": "true"
+                                      }
+                                    ],
+                                    "then": [
+                                      {
+                                        "name": "getHelpDeskStatusesForTicketStatusResult",
+                                        "type": "set",
+                                        "value": "${result.Value.AsODataEnumerable()}",
+                                        "valueType": "IEnumerable<Cpdhelpdesk.Models.Authenticationconn.HelpDeskStatus>"
+                                      },
+                                      {
+                                        "name": "getHelpDeskStatusesForTicketStatusCount",
+                                        "type": "set",
+                                        "value": "result.Count"
+                                      }
+                                    ],
+                                    "type": "invoke"
+                                  }
+                                ]
+                              },
+                              "name": "TicketStatus",
+                              "pageSize": 150,
+                              "pagingSummaryFormat": "",
+                              "placeholder": "Choose HelpDeskStatus",
+                              "responsive": true,
+                              "selectedValue": "${getByHelpDeskStatusesForTicketStatusResult}",
+                              "showSearch": false,
+                              "style": {},
+                              "textProperty": "TicketStatusDesc",
+                              "type": "dropdown-datagrid",
+                              "value": "${helpdeskticket.TicketStatus}",
+                              "valueProperty": "TicketStatus",
+                              "valueType": "string"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "TicketDate",
+                              "name": "TicketDateLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Ticket Date",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "dateFormat": "dd-mm-yyyy",
+                              "disabled": true,
+                              "hourFormat": 12,
+                              "name": "TicketDate",
+                              "style": {},
+                              "type": "datepicker",
+                              "value": "${helpdeskticket.TicketDate}",
+                              "valueType": "DateTime"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "TicketDescription",
+                              "name": "TicketDescriptionLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Ticket Description",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "component": "TicketDescription",
+                              "name": "TicketDescriptionRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "TicketDescription is required",
+                              "type": "required-validator"
+                            },
+                            {
+                              "disabled": true,
+                              "name": "TicketDescription",
+                              "style": {
+                                "width": "579px"
+                              },
+                              "tools": [
+                                {
+                                  "type": "Separator"
+                                }
+                              ],
+                              "type": "html-editor",
+                              "uploadUrl": "upload/image",
+                              "value": "${helpdeskticket.TicketDescription}"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "TicketRequesterUser",
+                              "name": "TicketRequesterUserLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Ticket Requester User",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "disabled": true,
+                              "maxLength": 250,
+                              "name": "TicketRequesterUser",
+                              "style": {
+                                "display": "flex"
+                              },
+                              "type": "textbox",
+                              "value": "${helpdeskticket.TicketRequesterUser}",
+                              "valueType": "string"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "TicketRequesterEmail",
+                              "name": "TicketRequesterEmailLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Ticket Requester Email",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "disabled": true,
+                              "maxLength": 500,
+                              "name": "TicketRequesterEmail",
+                              "style": {
+                                "display": "block",
+                                "position": "static"
+                              },
+                              "type": "textbox",
+                              "value": "${helpdeskticket.TicketRequesterEmail}",
+                              "valueType": "string"
+                            },
+                            {
+                              "component": "TicketRequesterEmail",
+                              "name": "TicketRequesterEmailRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "TicketRequesterEmail is required",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "locationID",
+                              "name": "locationIDLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Location List",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "count": "${getLocationListsForlocationIDCount}",
+                              "data": "${getLocationListsForlocationIDResult}",
+                              "disabled": true,
+                              "events": {
+                                "loadData": [
+                                  {
+                                    "name": "authenticationconn.getLocationLists",
+                                    "parameters": [
+                                      {
+                                        "name": "$top",
+                                        "value": "${event.top}"
+                                      },
+                                      {
+                                        "name": "$skip",
+                                        "value": "${event.skip}"
+                                      },
+                                      {
+                                        "name": "$orderby",
+                                        "value": "${event.orderby}"
+                                      },
+                                      {
+                                        "name": "$filter",
+                                        "value": "${event.filter}"
+                                      },
+                                      {
+                                        "name": "$count",
+                                        "value": "true"
+                                      }
+                                    ],
+                                    "then": [
+                                      {
+                                        "name": "getLocationListsForlocationIDResult",
+                                        "type": "set",
+                                        "value": "${result.Value.AsODataEnumerable()}",
+                                        "valueType": "IEnumerable<Cpdhelpdesk.Models.Authenticationconn.LocationList>"
+                                      },
+                                      {
+                                        "name": "getLocationListsForlocationIDCount",
+                                        "type": "set",
+                                        "value": "result.Count"
+                                      }
+                                    ],
+                                    "type": "invoke"
+                                  }
+                                ]
+                              },
+                              "name": "locationID",
+                              "pageSize": 150,
+                              "pagingSummaryFormat": "",
+                              "placeholder": "Choose LocationList",
+                              "responsive": true,
+                              "selectedValue": "${getByLocationListsForlocationIDResult}",
+                              "showSearch": false,
+                              "style": {
+                                "display": "block"
+                              },
+                              "textProperty": "locationDesc",
+                              "type": "dropdown-datagrid",
+                              "value": "${helpdeskticket.locationID}",
+                              "valueProperty": "locationID",
+                              "valueType": "Int64?"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "ServiceCatgID",
+                              "name": "ServiceCatgIDLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Service Catglist",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "count": "${getServiceCatglistsForServiceCatgIDCount}",
+                              "data": "${getServiceCatglistsForServiceCatgIDResult}",
+                              "disabled": true,
+                              "events": {
+                                "loadData": [
+                                  {
+                                    "name": "authenticationconn.getServiceCatglists",
+                                    "parameters": [
+                                      {
+                                        "name": "$top",
+                                        "value": "${event.top}"
+                                      },
+                                      {
+                                        "name": "$skip",
+                                        "value": "${event.skip}"
+                                      },
+                                      {
+                                        "name": "$orderby",
+                                        "value": "${event.orderby}"
+                                      },
+                                      {
+                                        "name": "$filter",
+                                        "value": "${event.filter}"
+                                      },
+                                      {
+                                        "name": "$count",
+                                        "value": "true"
+                                      }
+                                    ],
+                                    "then": [
+                                      {
+                                        "name": "getServiceCatglistsForServiceCatgIDResult",
+                                        "type": "set",
+                                        "value": "${result.Value.AsODataEnumerable()}",
+                                        "valueType": "IEnumerable<Cpdhelpdesk.Models.Authenticationconn.ServiceCatglist>"
+                                      },
+                                      {
+                                        "name": "getServiceCatglistsForServiceCatgIDCount",
+                                        "type": "set",
+                                        "value": "result.Count"
+                                      }
+                                    ],
+                                    "type": "invoke"
+                                  }
+                                ]
+                              },
+                              "name": "ServiceCatgID",
+                              "pageSize": 150,
+                              "placeholder": "Choose ServiceCatglist",
+                              "responsive": true,
+                              "selectedValue": "${getByServiceCatglistsForServiceCatgIDResult}",
+                              "showSearch": false,
+                              "style": {
+                                "display": "block"
+                              },
+                              "textProperty": "ServiceCatgDesc",
+                              "type": "dropdown-datagrid",
+                              "value": "${helpdeskticket.ServiceCatgID}",
+                              "valueProperty": "ServiceCatgID",
+                              "valueType": "Int64?"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "ServiceID",
+                              "name": "ServiceIDLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Services List",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "count": "${getServicesListsForServiceIDCount}",
+                              "data": "${getServicesListsForServiceIDResult}",
+                              "disabled": true,
+                              "events": {
+                                "loadData": [
+                                  {
+                                    "name": "authenticationconn.getServicesLists",
+                                    "parameters": [
+                                      {
+                                        "name": "$top",
+                                        "value": "${event.top}"
+                                      },
+                                      {
+                                        "name": "$skip",
+                                        "value": "${event.skip}"
+                                      },
+                                      {
+                                        "name": "$orderby",
+                                        "value": "${event.orderby}"
+                                      },
+                                      {
+                                        "name": "$filter",
+                                        "value": "${event.filter}"
+                                      },
+                                      {
+                                        "name": "$count",
+                                        "value": "true"
+                                      }
+                                    ],
+                                    "then": [
+                                      {
+                                        "name": "getServicesListsForServiceIDResult",
+                                        "type": "set",
+                                        "value": "${result.Value.AsODataEnumerable()}",
+                                        "valueType": "IEnumerable<Cpdhelpdesk.Models.Authenticationconn.ServicesList>"
+                                      },
+                                      {
+                                        "name": "getServicesListsForServiceIDCount",
+                                        "type": "set",
+                                        "value": "result.Count"
+                                      }
+                                    ],
+                                    "type": "invoke"
+                                  }
+                                ]
+                              },
+                              "name": "ServiceID",
+                              "pageSize": 150,
+                              "placeholder": "Choose ServicesList",
+                              "responsive": true,
+                              "selectedValue": "${getByServicesListsForServiceIDResult}",
+                              "showSearch": false,
+                              "style": {
+                                "width": "628.75px"
+                              },
+                              "template": "",
+                              "textProperty": "ServiceDesc",
+                              "type": "dropdown-datagrid",
+                              "value": "${helpdeskticket.ServiceID}",
+                              "valueProperty": "ServiceID",
+                              "valueType": "Int64?"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "assignTo",
+                              "name": "assignToLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Assign To",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "disabled": true,
+                              "maxLength": 250,
+                              "name": "assignTo",
+                              "style": {
+                                "width": "229.75px"
+                              },
+                              "type": "textbox",
+                              "value": "${helpdeskticket.assignTo}",
+                              "valueType": "string"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem",
+                        "visibility": "hidden"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "AuditCC",
+                              "name": "AuditCCLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Audit Cc",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "disabled": true,
+                              "maxLength": 250,
+                              "name": "AuditCC",
+                              "style": {
+                                "width": "226.75px"
+                              },
+                              "type": "textbox",
+                              "value": "${helpdeskticket.AuditCC}",
+                              "valueType": "string"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem",
+                        "visibility": "hidden"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "TicketResponseUser",
+                              "name": "TicketResponseUserLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Ticket Response User",
+                              "type": "label"
+                            }
+                          ],
+                          "name": "col2",
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "disabled": true,
+                              "maxLength": 250,
+                              "name": "TicketResponseUser",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": "${helpdeskticket.TicketResponseUser}",
+                              "valueType": "string"
+                            }
+                          ],
+                          "name": "col6",
+                          "type": "col"
+                        }
+                      ],
+                      "name": "row3",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    }
+                  ],
+                  "data": "${helpdeskticket}",
+                  "events": {
+                    "submit": [
+                      {
+                        "code": "helpdeskticket.TicketResponseUser=Security.User.Name;",
+                        "type": "execute"
+                      },
+                      {
+                        "error": [
+                          {
+                            "detail": "Unable to update HelpDeskTicket",
+                            "severity": "error",
+                            "summary": "Error",
+                            "type": "notify"
+                          }
+                        ],
+                        "name": "authenticationconn.updateHelpDeskTicket",
+                        "parameters": [
+                          {
+                            "name": "Id",
+                            "value": "Convert.ChangeType(${parameters.Id}, Type.GetTypeCode(typeof(Int64)))"
+                          },
+                          {
+                            "name": "HelpDeskTicket",
+                            "value": "${helpdeskticket}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "condition": "result.StatusCode != System.Net.HttpStatusCode.PreconditionFailed",
+                            "path": "i-help-desk-ticketwithdetails",
+                            "type": "navigate"
+                          },
+                          {
+                            "name": "hasChanges",
+                            "type": "set",
+                            "value": "result.StatusCode == System.Net.HttpStatusCode.PreconditionFailed",
+                            "valueType": "bool"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ]
+                  },
+                  "itemType": "Cpdhelpdesk.Models.Authenticationconn.HelpDeskTicket",
+                  "name": "form0",
+                  "style": {
+                    "height": "602px"
+                  },
+                  "type": "template-form",
+                  "visible": "${helpdeskticket != null && canEdit}"
+                }
+              ],
+              "type": "col"
+            }
+          ],
+          "type": "row"
+        },
+        {
+          "components": [
+            {
+              "components": [
+                {
+                  "components": [
+                    {
+                      "class": "col-md-12",
+                      "components": [
+                        {
+                          "allowPaging": true,
+                          "count": "${getHelpDeskTicketDetailsCount}",
+                          "data": "${getHelpDeskTicketDetailsResult}",
+                          "itemType": "Cpdhelpdesk.Models.Authenticationconn.HelpDeskTicketDetail",
+                          "name": "datalist0",
+                          "pageSize": 30,
+                          "style": {
+                            "height": "796px",
+                            "width": "879.265625px"
+                          },
+                          "template": "<div style=\"margin-bottom: 1rem\" class=\"row\">\n<div class=\"col-md-3\">\nResponser:\n                              <div>@data.TicketResponseUser</div>\n                          </div>\n                          <div class=\"col-md-3\">\n                              <div>@data.TicketDetailDate</div>\n                          </div>\n                          <div class=\"col-md-9\">\n                              <div>@data.TicketDescription</div>\n</div></div>\n\n\n\n",
+                          "type": "datalist",
+                          "wrapItems": false
+                        }
+                      ],
+                      "name": "col3",
+                      "type": "col"
+                    }
+                  ],
+                  "name": "row2",
+                  "type": "row"
+                }
+              ],
+              "name": "templateForm0",
+              "type": "template-form"
+            }
+          ],
+          "name": "row1",
+          "style": {
+            "height": "801px"
+          },
+          "type": "row"
+        }
+      ],
+      "container": "main",
+      "type": "content"
+    },
+    {
+      "style": {
+        "backgroundColor": "#414141",
+        "border": "1px solid rgba(0, 0, 0, 0)",
+        "color": "#414141",
+        "display": "block",
+        "float": "none",
+        "fontWeight": "bold",
+        "height": "1227px",
+        "position": "absolute",
+        "visibility": "visible",
+        "width": "251px",
+        "zIndex": "3"
+      }
+    },
+    {
+      "style": {
+        "backgroundColor": "#414141",
+        "border": "1px solid rgba(0, 0, 0, 0)",
+        "color": "#414141",
+        "display": "block",
+        "float": "none",
+        "fontWeight": "bold",
+        "height": "1227px",
+        "position": "absolute",
+        "visibility": "visible",
+        "width": "251px",
+        "zIndex": "3"
+      }
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "hasChanges",
+        "type": "set",
+        "value": "false",
+        "valueType": "bool"
+      },
+      {
+        "name": "canEdit",
+        "type": "set",
+        "value": "true",
+        "valueType": "bool"
+      },
+      {
+        "error": [],
+        "name": "authenticationconn.getHelpDeskTicketById",
+        "parameters": [
+          {
+            "name": "Id",
+            "value": "Convert.ChangeType(${parameters.Id}, Type.GetTypeCode(typeof(Int64)))"
+          }
+        ],
+        "then": [
+          {
+            "name": "helpdeskticket",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "Cpdhelpdesk.Models.Authenticationconn.HelpDeskTicket"
+          },
+          {
+            "name": "canEdit",
+            "type": "set",
+            "value": "result != null",
+            "valueType": "bool"
+          },
+          {
+            "name": "HelpDeskTicketIdpar",
+            "type": "set",
+            "value": "${parameters.Id}",
+            "valueType": "dynamic"
+          },
+          {
+            "condition": "this.helpdeskticket.TicketStatus != null",
+            "name": "authenticationconn.getHelpDeskStatusByTicketStatus",
+            "parameters": [
+              {
+                "name": "TicketStatus",
+                "value": "${this.helpdeskticket.TicketStatus}"
+              }
+            ],
+            "then": [
+              {
+                "name": "getByHelpDeskStatusesForTicketStatusResult",
+                "type": "set",
+                "value": "${result}",
+                "valueType": "Cpdhelpdesk.Models.Authenticationconn.HelpDeskStatus"
+              }
+            ],
+            "type": "invoke"
+          },
+          {
+            "condition": "this.helpdeskticket.locationID != null",
+            "name": "authenticationconn.getLocationListBylocationID",
+            "parameters": [
+              {
+                "name": "locationID",
+                "value": "${this.helpdeskticket.locationID}"
+              }
+            ],
+            "then": [
+              {
+                "name": "getByLocationListsForlocationIDResult",
+                "type": "set",
+                "value": "${result}",
+                "valueType": "Cpdhelpdesk.Models.Authenticationconn.LocationList"
+              }
+            ],
+            "type": "invoke"
+          },
+          {
+            "condition": "this.helpdeskticket.ServiceCatgID != null",
+            "name": "authenticationconn.getServiceCatglistByServiceCatgID",
+            "parameters": [
+              {
+                "name": "ServiceCatgID",
+                "value": "${this.helpdeskticket.ServiceCatgID}"
+              }
+            ],
+            "then": [
+              {
+                "name": "getByServiceCatglistsForServiceCatgIDResult",
+                "type": "set",
+                "value": "${result}",
+                "valueType": "Cpdhelpdesk.Models.Authenticationconn.ServiceCatglist"
+              }
+            ],
+            "type": "invoke"
+          },
+          {
+            "condition": "this.helpdeskticket.ServiceID != null",
+            "name": "authenticationconn.getServicesListByServiceID",
+            "parameters": [
+              {
+                "name": "ServiceID",
+                "value": "${this.helpdeskticket.ServiceID}"
+              }
+            ],
+            "then": [
+              {
+                "name": "getByServicesListsForServiceIDResult",
+                "type": "set",
+                "value": "${result}",
+                "valueType": "Cpdhelpdesk.Models.Authenticationconn.ServicesList"
+              },
+              {}
+            ],
+            "type": "invoke"
+          },
+          {
+            "condition": "${parameters.Id} != null",
+            "name": "authenticationconn.getHelpDeskTicketDetails",
+            "parameters": [
+              {
+                "name": "$filter",
+                "operator": "and",
+                "value": [
+                  {
+                    "format": "int64",
+                    "operation": "eq",
+                    "property": "HelpDeskTicketId",
+                    "type": "integer",
+                    "value": "${parameters.Id}"
+                  }
+                ]
+              },
+              {
+                "name": "$orderby",
+                "value": [
+                  {
+                    "direction": "desc",
+                    "property": "Id"
+                  }
+                ]
+              }
+            ],
+            "then": [
+              {
+                "name": "getHelpDeskTicketDetailsResult",
+                "type": "set",
+                "value": "${result.Value.AsODataEnumerable()}",
+                "valueType": "IEnumerable<Cpdhelpdesk.Models.Authenticationconn.HelpDeskTicketDetail>"
+              },
+              {
+                "name": "getHelpDeskTicketDetailsCount",
+                "type": "set",
+                "value": "${result.Count}",
+                "valueType": "int"
+              }
+            ],
+            "type": "invoke"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "layout": "widelayout",
+  "name": "Edit I Help Desk Ticketwithdetails"
+}
