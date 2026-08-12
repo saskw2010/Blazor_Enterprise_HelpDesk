@@ -1,0 +1,70 @@
+﻿@page "/i-help-desk-ticketwithdetails"
+@layout WidelayoutLayout
+@inherits Cpdhelpdesk.Pages.IHelpDeskTicketwithdetailsComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using Cpdhelpdesk.Models.Authenticationconn
+@using Cpdhelpdesk.Models
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+@inject Microsoft.Extensions.Localization.IStringLocalizer<IHelpDeskTicketwithdetails> L
+<PageTitle>IHelpDeskTicketwithdetails</PageTitle>
+<RadzenContent Container="main">
+  <ChildContent>
+    <RadzenHeading Size="H1" Text="@L["pageTitle.Text"]">
+    </RadzenHeading>
+    <div class="row">
+      <div class="col-md-12">
+        <RadzenButton style="display: inline-block; float: right; width: 172px" Text="@L["button12.Text"]" Click="@Button12Click">
+        </RadzenButton>
+        <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px; width: 170.53125px" Text="@L["button0.Text"]" Click="@Button0Click">
+        </RadzenButton>
+        <RadzenDataGrid @ref="grid0" AllowColumnReorder="true" AllowColumnResize="true" AllowFiltering="true" AllowGrouping="true" AllowPaging="true" AllowSorting="true" Count="@getHelpDeskTicketsCount" Data="@getHelpDeskTicketsResult" FilterMode="Radzen.FilterMode.Advanced" GroupPanelText="Group Here " TItem="Cpdhelpdesk.Models.Authenticationconn.HelpDeskTicket" PageSize="10" PagerPosition="PagerPosition.Top" Responsive="true" ShowPagingSummary="true" style="height: 509px" CellRender="@Grid0CellRender" LoadData="@Grid0LoadData" Render="@Grid0Render" RowSelect="@Grid0RowSelect">
+          <Columns>
+            <RadzenDataGridColumn TItem="Cpdhelpdesk.Models.Authenticationconn.HelpDeskTicket" FilterProperty="HelpDeskStatus.TicketStatusDesc" Frozen="true" GroupProperty="HelpDeskStatus.TicketStatusDesc" Property="TicketStatus" SortProperty="HelpDeskStatus.TicketStatusDesc" Title="@L["grid0.TicketStatus.Title"]">
+              <Template Context="data">
+              @(data.HelpDeskStatus?.TicketStatusDesc)
+              </Template>
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Cpdhelpdesk.Models.Authenticationconn.HelpDeskTicket" Property="Id" Title="@L["grid0.Id.Title"]">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Cpdhelpdesk.Models.Authenticationconn.HelpDeskTicket" Property="TicketGUID" Title="@L["grid0.TicketGUID.Title"]">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Cpdhelpdesk.Models.Authenticationconn.HelpDeskTicket" FormatString="{0:d}" Property="TicketDate" Title="@L["grid0.TicketDate.Title"]">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Cpdhelpdesk.Models.Authenticationconn.HelpDeskTicket" Property="TicketDescription" Title="@L["grid0.TicketDescription.Title"]">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Cpdhelpdesk.Models.Authenticationconn.HelpDeskTicket" Property="TicketRequesterUser" Title="@L["grid0.TicketRequesterUser.Title"]">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Cpdhelpdesk.Models.Authenticationconn.HelpDeskTicket" Property="TicketRequesterEmail" Title="@L["grid0.TicketRequesterEmail.Title"]">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Cpdhelpdesk.Models.Authenticationconn.HelpDeskTicket" FilterProperty="LocationList.locationDesc" GroupProperty="LocationList.locationDesc" Property="locationID" SortProperty="LocationList.locationDesc" Title="@L["grid0.locationID.Title"]">
+              <Template Context="data">
+              @(data.LocationList?.locationDesc)
+              </Template>
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Cpdhelpdesk.Models.Authenticationconn.HelpDeskTicket" FilterProperty="ServiceCatglist.ServiceCatgDesc" GroupProperty="ServiceCatglist.ServiceCatgDesc" Property="ServiceCatgID" SortProperty="ServiceCatglist.ServiceCatgDesc" Title="@L["grid0.ServiceCatgID.Title"]">
+              <Template Context="data">
+              @(data.ServiceCatglist?.ServiceCatgDesc)
+              </Template>
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Cpdhelpdesk.Models.Authenticationconn.HelpDeskTicket" FilterProperty="ServicesList.ServiceDesc" GroupProperty="ServicesList.ServiceDesc" Property="ServiceID" SortProperty="ServicesList.ServiceDesc" Title="@L["grid0.ServiceID.Title"]">
+              <Template Context="data">
+              @(data.ServicesList?.ServiceDesc)
+              </Template>
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Cpdhelpdesk.Models.Authenticationconn.HelpDeskTicket" Property="assignTo" Title="@L["grid0.assignTo.Title"]">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Cpdhelpdesk.Models.Authenticationconn.HelpDeskTicket" Property="AuditCC" Title="@L["grid0.AuditCC.Title"]">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Cpdhelpdesk.Models.Authenticationconn.HelpDeskTicket" Property="TicketResponseUser" Title="@L["grid0.TicketResponseUser.Title"]">
+            </RadzenDataGridColumn>
+          </Columns>
+        </RadzenDataGrid>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>
+
+
