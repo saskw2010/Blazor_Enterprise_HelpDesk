@@ -1,0 +1,758 @@
+{
+  "access": [
+    "Authenticated"
+  ],
+  "components": [
+    {
+      "components": [
+        {
+          "name": "pageTitle",
+          "size": "H1",
+          "style": {
+            "backgroundColor": "#5d717b",
+            "display": "none",
+            "textAlign": "center"
+          },
+          "text": "CPD HELP DESK",
+          "type": "heading"
+        },
+        {
+          "attributes": [
+            {
+              "name": "class",
+              "value": "mosbodybak"
+            }
+          ],
+          "components": [
+            {
+              "attributes": [
+                {
+                  "name": "class",
+                  "value": "mosbodybak"
+                }
+              ],
+              "class": "col-md-12",
+              "components": [
+                {
+                  "attributes": [
+                    {
+                      "name": "class",
+                      "value": "rz-card-mycomponent"
+                    }
+                  ],
+                  "components": [
+                    {
+                      "attributes": [],
+                      "name": "image0",
+                      "path": "/assets/images/ticket (1).png",
+                      "style": {
+                        "display": "block",
+                        "float": "left",
+                        "height": "111px",
+                        "left": "60px",
+                        "position": "relative",
+                        "top": "-20px",
+                        "visibility": "visible",
+                        "width": "149px"
+                      },
+                      "type": "image"
+                    },
+                    {
+                      "buttonStyle": "info",
+                      "buttonType": "submit",
+                      "events": {
+                        "click": [
+                          {
+                            "path": "i-add-new-ticket",
+                            "type": "navigate"
+                          }
+                        ]
+                      },
+                      "icon": "sticky_note_2",
+                      "name": "button21",
+                      "style": {
+                        "backgroundColor": "#ffffff",
+                        "color": "#3a474d",
+                        "display": "inline-block",
+                        "float": "left",
+                        "height": "96px",
+                        "left": "-25px",
+                        "paddingLeft": "0px",
+                        "paddingRight": "0px",
+                        "position": "relative",
+                        "textAlign": "center",
+                        "top": "-20px",
+                        "verticalAlign": "baseline",
+                        "visibility": "visible",
+                        "width": "334px",
+                        "zIndex": "0"
+                      },
+                      "template": "",
+                      "text": "New Ticket",
+                      "type": "button"
+                    }
+                  ],
+                  "name": "card0",
+                  "style": {
+                    "backgroundColor": "#1990cb",
+                    "display": "block",
+                    "float": "left",
+                    "height": "206px",
+                    "marginLeft": "16px",
+                    "marginTop": "16px",
+                    "position": "relative",
+                    "textAlign": "center",
+                    "verticalAlign": "middle",
+                    "width": "333px"
+                  },
+                  "type": "card",
+                  "visible": true
+                },
+                {
+                  "attributes": [
+                    {
+                      "name": "class",
+                      "value": "rz-card-mycomponent"
+                    }
+                  ],
+                  "components": [
+                    {
+                      "name": "image4",
+                      "path": "/assets/images/plane-ticket.png",
+                      "style": {
+                        "display": "block",
+                        "float": "left",
+                        "height": "111px",
+                        "left": "80px",
+                        "position": "relative",
+                        "top": "-20px",
+                        "visibility": "visible",
+                        "width": "133px"
+                      },
+                      "type": "image"
+                    },
+                    {
+                      "buttonStyle": "info",
+                      "buttonType": "submit",
+                      "events": {
+                        "click": [
+                          {
+                            "path": "services-lists",
+                            "type": "navigate"
+                          }
+                        ]
+                      },
+                      "icon": "admin_panel_settings",
+                      "name": "button41",
+                      "style": {
+                        "backgroundColor": "#ffffff",
+                        "color": "#3a474d",
+                        "display": "inline-block",
+                        "float": "left",
+                        "height": "96px",
+                        "left": "-25px",
+                        "paddingLeft": "0px",
+                        "paddingRight": "0px",
+                        "position": "relative",
+                        "textAlign": "center",
+                        "top": "-20px",
+                        "verticalAlign": "baseline",
+                        "visibility": "visible",
+                        "width": "334px",
+                        "zIndex": "0"
+                      },
+                      "template": "",
+                      "text": "administrator",
+                      "type": "button"
+                    }
+                  ],
+                  "name": "card4",
+                  "style": {
+                    "backgroundColor": "#68d5c8",
+                    "display": "block",
+                    "float": "left",
+                    "height": "206px",
+                    "marginLeft": "16px",
+                    "marginTop": "16px",
+                    "position": "relative",
+                    "textAlign": "center",
+                    "verticalAlign": "middle",
+                    "width": "333px"
+                  },
+                  "type": "card",
+                  "visible": "${Security.IsInRole(\"cpdheldeskadmin\")}"
+                },
+                {
+                  "attributes": [
+                    {
+                      "name": "class",
+                      "value": "rz-card-mycomponent"
+                    }
+                  ],
+                  "components": [
+                    {
+                      "name": "image1",
+                      "path": "/assets/images/plane-ticket.png",
+                      "style": {
+                        "display": "block",
+                        "float": "left",
+                        "height": "111px",
+                        "left": "80px",
+                        "position": "relative",
+                        "top": "-20px",
+                        "visibility": "visible",
+                        "width": "133px"
+                      },
+                      "type": "image"
+                    },
+                    {
+                      "buttonStyle": "info",
+                      "buttonType": "submit",
+                      "events": {
+                        "click": [
+                          {
+                            "code": "langauageculture = \"\";\nCulture = \"\";\nlanguagename = \"\";\nenglishname = \"\";\nlangauageculture =System.Globalization.CultureInfo.CurrentCulture.DisplayName;\nCulture = await JSRuntime.InvokeAsync<string>(\"Radzen.getCulture\");\nlanguagename=System.Globalization.CultureInfo.CurrentCulture.Name + \" - \" + System.Globalization.CultureInfo.CurrentCulture.DisplayName;\nenglishname= Loc[\"mostafaelnagar\"];",
+                            "type": "execute"
+                          }
+                        ]
+                      },
+                      "icon": "admin_panel_settings",
+                      "name": "button0",
+                      "style": {
+                        "backgroundColor": "#ffffff",
+                        "color": "#3a474d",
+                        "display": "inline-block",
+                        "float": "left",
+                        "height": "96px",
+                        "left": "-25px",
+                        "paddingLeft": "0px",
+                        "paddingRight": "0px",
+                        "position": "relative",
+                        "textAlign": "center",
+                        "top": "-20px",
+                        "verticalAlign": "baseline",
+                        "visibility": "visible",
+                        "width": "334px",
+                        "zIndex": "0"
+                      },
+                      "template": "",
+                      "text": "${englishname}",
+                      "type": "button"
+                    }
+                  ],
+                  "name": "card1",
+                  "style": {
+                    "backgroundColor": "#68d5c8",
+                    "display": "block",
+                    "float": "left",
+                    "height": "206px",
+                    "marginLeft": "16px",
+                    "marginTop": "16px",
+                    "position": "relative",
+                    "textAlign": "center",
+                    "verticalAlign": "middle",
+                    "width": "333px"
+                  },
+                  "type": "card",
+                  "visible": false
+                },
+                {
+                  "attributes": [
+                    {
+                      "name": "class",
+                      "value": "rz-card-mycomponent"
+                    }
+                  ],
+                  "components": [
+                    {
+                      "name": "image3",
+                      "path": "/assets/images/tickets.png",
+                      "style": {
+                        "display": "block",
+                        "float": "left",
+                        "height": "111px",
+                        "left": "80px",
+                        "position": "relative",
+                        "top": "-20px",
+                        "visibility": "visible",
+                        "width": "121px"
+                      },
+                      "type": "image"
+                    },
+                    {
+                      "buttonStyle": "info",
+                      "buttonType": "submit",
+                      "events": {
+                        "click": [
+                          {
+                            "path": "i-help-desk-ticketmasterdetails",
+                            "type": "navigate"
+                          }
+                        ]
+                      },
+                      "icon": "sticky_note_2",
+                      "name": "button31",
+                      "style": {
+                        "backgroundColor": "#ffffff",
+                        "color": "#3a474d",
+                        "display": "inline-block",
+                        "float": "left",
+                        "height": "96px",
+                        "left": "-25px",
+                        "paddingLeft": "0px",
+                        "paddingRight": "0px",
+                        "position": "relative",
+                        "textAlign": "center",
+                        "top": "-20px",
+                        "verticalAlign": "baseline",
+                        "visibility": "visible",
+                        "width": "334px",
+                        "zIndex": "0"
+                      },
+                      "template": "",
+                      "text": " My Tickets tree",
+                      "type": "button"
+                    }
+                  ],
+                  "name": "card3",
+                  "style": {
+                    "backgroundColor": "#1990cb",
+                    "display": "block",
+                    "float": "left",
+                    "height": "206px",
+                    "marginLeft": "16px",
+                    "marginTop": "16px",
+                    "position": "relative",
+                    "textAlign": "center",
+                    "verticalAlign": "middle",
+                    "width": "333px"
+                  },
+                  "type": "card",
+                  "visible": true
+                },
+                {
+                  "attributes": [
+                    {
+                      "name": "class",
+                      "value": "rz-card-mycomponent"
+                    }
+                  ],
+                  "components": [
+                    {
+                      "name": "image2",
+                      "path": "/assets/images/statistics.png",
+                      "style": {
+                        "display": "block",
+                        "float": "left",
+                        "height": "111px",
+                        "left": "80px",
+                        "position": "relative",
+                        "top": "-20px",
+                        "visibility": "visible",
+                        "width": "126px"
+                      },
+                      "type": "image"
+                    },
+                    {
+                      "buttonStyle": "info",
+                      "buttonType": "submit",
+                      "events": {
+                        "click": [
+                          {
+                            "path": "i-help-desk-ticketmasterdetailsperuser",
+                            "type": "navigate"
+                          }
+                        ]
+                      },
+                      "icon": "sticky_note_2",
+                      "name": "button11",
+                      "style": {
+                        "backgroundColor": "#ffffff",
+                        "color": "#3a474d",
+                        "display": "inline-block",
+                        "float": "left",
+                        "height": "96px",
+                        "left": "-25px",
+                        "paddingLeft": "0px",
+                        "paddingRight": "0px",
+                        "position": "relative",
+                        "textAlign": "center",
+                        "top": "-20px",
+                        "verticalAlign": "baseline",
+                        "visibility": "visible",
+                        "width": "334px",
+                        "zIndex": "0"
+                      },
+                      "template": "",
+                      "text": "My Tickets History",
+                      "type": "button"
+                    }
+                  ],
+                  "name": "card2",
+                  "style": {
+                    "backgroundColor": "#68d5c8",
+                    "display": "block",
+                    "float": "left",
+                    "height": "206px",
+                    "marginLeft": "16px",
+                    "marginTop": "16px",
+                    "position": "relative",
+                    "textAlign": "center",
+                    "verticalAlign": "middle",
+                    "width": "333px"
+                  },
+                  "type": "card",
+                  "visible": "${Security.IsInRole(\"cpdheldeskadmin\")}"
+                },
+                {
+                  "attributes": [
+                    {
+                      "name": "class",
+                      "value": "rz-card-mycomponent"
+                    }
+                  ],
+                  "components": [
+                    {
+                      "name": "image5",
+                      "path": "/assets/images/mypinding.png",
+                      "style": {
+                        "display": "block",
+                        "float": "left",
+                        "height": "111px",
+                        "left": "80px",
+                        "position": "relative",
+                        "top": "-20px",
+                        "visibility": "visible",
+                        "width": "126px"
+                      },
+                      "type": "image"
+                    },
+                    {
+                      "buttonStyle": "info",
+                      "buttonType": "submit",
+                      "events": {
+                        "click": [
+                          {
+                            "path": "i-help-desk-tickets",
+                            "type": "navigate"
+                          }
+                        ]
+                      },
+                      "icon": "sticky_note_2",
+                      "name": "button61",
+                      "style": {
+                        "backgroundColor": "#ffffff",
+                        "color": "#3a474d",
+                        "display": "inline-block",
+                        "float": "left",
+                        "height": "96px",
+                        "left": "-25px",
+                        "paddingLeft": "0px",
+                        "paddingRight": "0px",
+                        "position": "relative",
+                        "textAlign": "center",
+                        "top": "-20px",
+                        "verticalAlign": "baseline",
+                        "visibility": "visible",
+                        "width": "334px",
+                        "zIndex": "0"
+                      },
+                      "template": "",
+                      "text": "My Pinding Ticket",
+                      "type": "button"
+                    }
+                  ],
+                  "name": "card6",
+                  "style": {
+                    "backgroundColor": "#68d5c8",
+                    "display": "block",
+                    "float": "left",
+                    "height": "206px",
+                    "marginLeft": "16px",
+                    "marginTop": "16px",
+                    "position": "relative",
+                    "textAlign": "center",
+                    "verticalAlign": "middle",
+                    "width": "333px"
+                  },
+                  "type": "card",
+                  "visible": true
+                },
+                {
+                  "attributes": [
+                    {
+                      "name": "class",
+                      "value": "rz-card-mycomponent"
+                    }
+                  ],
+                  "components": [
+                    {
+                      "name": "image6",
+                      "path": "/assets/images/mypinding.png",
+                      "style": {
+                        "display": "block",
+                        "float": "left",
+                        "height": "111px",
+                        "left": "80px",
+                        "position": "relative",
+                        "top": "-20px",
+                        "visibility": "visible",
+                        "width": "126px"
+                      },
+                      "type": "image"
+                    },
+                    {
+                      "buttonStyle": "info",
+                      "buttonType": "submit",
+                      "events": {
+                        "click": [
+                          {
+                            "path": "i-help-desk-ticketwithdetails",
+                            "type": "navigate"
+                          }
+                        ]
+                      },
+                      "icon": "sticky_note_2",
+                      "name": "button62",
+                      "style": {
+                        "backgroundColor": "#ffffff",
+                        "color": "#3a474d",
+                        "display": "inline-block",
+                        "float": "left",
+                        "height": "96px",
+                        "left": "-25px",
+                        "paddingLeft": "0px",
+                        "paddingRight": "0px",
+                        "position": "relative",
+                        "textAlign": "center",
+                        "top": "-20px",
+                        "verticalAlign": "baseline",
+                        "visibility": "visible",
+                        "width": "334px",
+                        "zIndex": "0"
+                      },
+                      "template": "",
+                      "text": "My Assign Ticket",
+                      "type": "button"
+                    }
+                  ],
+                  "name": "card7",
+                  "style": {
+                    "backgroundColor": "#68d5c8",
+                    "display": "block",
+                    "float": "left",
+                    "height": "206px",
+                    "marginLeft": "16px",
+                    "marginTop": "16px",
+                    "position": "relative",
+                    "textAlign": "center",
+                    "verticalAlign": "middle",
+                    "width": "333px"
+                  },
+                  "type": "card",
+                  "visible": "${Security.IsInRole(\"cpdheldeskadmin\")}"
+                },
+                {
+                  "attributes": [
+                    {
+                      "name": "class",
+                      "value": "rz-card-mycomponent"
+                    }
+                  ],
+                  "components": [
+                    {
+                      "name": "image7",
+                      "path": "/assets/images/mypinding.png",
+                      "style": {
+                        "display": "block",
+                        "float": "left",
+                        "height": "111px",
+                        "left": "80px",
+                        "position": "relative",
+                        "top": "-20px",
+                        "visibility": "visible",
+                        "width": "126px"
+                      },
+                      "type": "image"
+                    },
+                    {
+                      "buttonStyle": "info",
+                      "buttonType": "submit",
+                      "events": {
+                        "click": [
+                          {
+                            "path": "ihelpdeskassintome",
+                            "type": "navigate"
+                          }
+                        ]
+                      },
+                      "icon": "sticky_note_2",
+                      "name": "button63",
+                      "style": {
+                        "backgroundColor": "#ffffff",
+                        "color": "#3a474d",
+                        "display": "inline-block",
+                        "float": "left",
+                        "height": "96px",
+                        "left": "-25px",
+                        "paddingLeft": "0px",
+                        "paddingRight": "0px",
+                        "position": "relative",
+                        "textAlign": "center",
+                        "top": "-20px",
+                        "verticalAlign": "baseline",
+                        "visibility": "visible",
+                        "width": "334px",
+                        "zIndex": "0"
+                      },
+                      "template": "",
+                      "text": "AssignTo ME Ticket",
+                      "type": "button"
+                    }
+                  ],
+                  "name": "card8",
+                  "style": {
+                    "backgroundColor": "#68d5c8",
+                    "display": "block",
+                    "float": "left",
+                    "height": "206px",
+                    "marginLeft": "16px",
+                    "marginTop": "16px",
+                    "position": "relative",
+                    "textAlign": "center",
+                    "verticalAlign": "middle",
+                    "width": "333px"
+                  },
+                  "type": "card",
+                  "visible": "${Security.IsInRole(\"cpdheldeskadmin\")}"
+                },
+                {
+                  "attributes": [
+                    {
+                      "name": "class",
+                      "value": "rz-card-mycomponent"
+                    }
+                  ],
+                  "components": [
+                    {
+                      "disabled": true,
+                      "name": "textbox0",
+                      "placeholder": "langauageculture",
+                      "readOnly": false,
+                      "type": "textbox",
+                      "value": "${langauageculture}"
+                    },
+                    {
+                      "disabled": true,
+                      "name": "textbox3",
+                      "placeholder": "languagename",
+                      "readOnly": false,
+                      "type": "textbox",
+                      "value": "${languagename}"
+                    },
+                    {
+                      "disabled": true,
+                      "name": "textbox2",
+                      "placeholder": "culture",
+                      "readOnly": false,
+                      "type": "textbox",
+                      "value": "${Culture}"
+                    },
+                    {
+                      "disabled": true,
+                      "name": "textbox1",
+                      "placeholder": "englishname",
+                      "readOnly": false,
+                      "type": "textbox",
+                      "value": "${englishname}"
+                    }
+                  ],
+                  "name": "card5",
+                  "style": {
+                    "backgroundColor": "#1990cb",
+                    "display": "block",
+                    "float": "left",
+                    "height": "206px",
+                    "marginLeft": "16px",
+                    "marginTop": "16px",
+                    "position": "relative",
+                    "textAlign": "center",
+                    "verticalAlign": "middle",
+                    "width": "333px"
+                  },
+                  "type": "card",
+                  "visible": false
+                }
+              ],
+              "name": "col0",
+              "type": "col"
+            }
+          ],
+          "name": "row0",
+          "type": "row"
+        }
+      ],
+      "container": "main",
+      "type": "content"
+    },
+    {
+      "style": {
+        "display": "block",
+        "float": "none",
+        "position": "absolute",
+        "top": "53px",
+        "visibility": "visible",
+        "width": "250px"
+      }
+    },
+    {
+      "style": {
+        "backgroundColor": "#414141",
+        "border": "1px solid rgba(0, 0, 0, 0)",
+        "color": "#414141",
+        "display": "block",
+        "float": "none",
+        "fontWeight": "bold",
+        "height": "1227px",
+        "position": "absolute",
+        "visibility": "visible",
+        "width": "251px",
+        "zIndex": "3"
+      }
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "langauageculture",
+        "type": "set",
+        "value": "\"\"",
+        "valueType": "string"
+      },
+      {
+        "name": "Culture",
+        "type": "set",
+        "value": "\"\"",
+        "valueType": "string"
+      },
+      {
+        "name": "languagename",
+        "type": "set",
+        "value": "\"\"",
+        "valueType": "string"
+      },
+      {
+        "name": "englishname",
+        "type": "set",
+        "value": "\"\"",
+        "valueType": "string"
+      },
+      {
+        "code": "langauageculture =System.Globalization.CultureInfo.CurrentCulture.DisplayName;\nCulture = await JSRuntime.InvokeAsync<string>(\"Radzen.getCulture\");\nlanguagename=System.Globalization.CultureInfo.CurrentCulture.Name + \" - \" + System.Globalization.CultureInfo.CurrentCulture.DisplayName;\nenglishname= Loc[\"mostafaelnagar\"];",
+        "type": "execute"
+      }
+    ]
+  },
+  "layout": "widelayoutmain",
+  "name": "ICCPDHELPDESK"
+}
