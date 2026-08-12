@@ -1,0 +1,303 @@
+{
+  "access": "Authenticated",
+  "components": [
+    {
+      "components": [
+        {
+          "name": "pageTitle",
+          "size": "H1",
+          "text": "IHelpDeskTicketwithdetails",
+          "type": "heading"
+        },
+        {
+          "components": [
+            {
+              "class": "col-md-12",
+              "components": [
+                {
+                  "events": {
+                    "click": [
+                      {
+                        "code": "await grid0.Reload();",
+                        "type": "execute"
+                      }
+                    ]
+                  },
+                  "icon": "",
+                  "name": "button12",
+                  "style": {
+                    "display": "inline-block",
+                    "float": "right",
+                    "width": "172px"
+                  },
+                  "text": "Refresh",
+                  "type": "button"
+                },
+                {
+                  "events": {
+                    "click": [
+                      {
+                        "path": "add-i-help-desk-ticketwithdetails",
+                        "then": [],
+                        "type": "navigate"
+                      }
+                    ]
+                  },
+                  "icon": "add_circle_outline",
+                  "name": "button0",
+                  "style": {
+                    "marginBottom": "10px",
+                    "width": "170.53125px"
+                  },
+                  "text": "Add",
+                  "type": "button"
+                },
+                {
+                  "allowColumnReorder": true,
+                  "allowColumnResize": true,
+                  "allowFiltering": true,
+                  "allowGrouping": true,
+                  "allowPaging": true,
+                  "allowSorting": true,
+                  "columns": [
+                    {
+                      "filterProperty": "HelpDeskStatus.TicketStatusDesc",
+                      "frozen": true,
+                      "groupFooterTemplate": "",
+                      "groupProperty": "HelpDeskStatus.TicketStatusDesc",
+                      "property": "TicketStatus",
+                      "sortProperty": "HelpDeskStatus.TicketStatusDesc",
+                      "template": "${data.HelpDeskStatus?.TicketStatusDesc}",
+                      "title": "Help Desk Status"
+                    },
+                    {
+                      "format": "int64",
+                      "property": "Id",
+                      "sortProperty": "",
+                      "title": "Id",
+                      "type": "integer"
+                    },
+                    {
+                      "property": "TicketGUID",
+                      "title": "Ticket GUID"
+                    },
+                    {
+                      "formatString": "{0:d}",
+                      "property": "TicketDate",
+                      "title": "Ticket Date"
+                    },
+                    {
+                      "property": "TicketDescription",
+                      "title": "Ticket Description"
+                    },
+                    {
+                      "property": "TicketRequesterUser",
+                      "title": "Ticket Requester User"
+                    },
+                    {
+                      "property": "TicketRequesterEmail",
+                      "title": "Ticket Requester Email"
+                    },
+                    {
+                      "filterProperty": "LocationList.locationDesc",
+                      "groupProperty": "LocationList.locationDesc",
+                      "property": "locationID",
+                      "sortProperty": "LocationList.locationDesc",
+                      "template": "${data.LocationList?.locationDesc}",
+                      "title": "Location List"
+                    },
+                    {
+                      "filterProperty": "ServiceCatglist.ServiceCatgDesc",
+                      "groupProperty": "ServiceCatglist.ServiceCatgDesc",
+                      "property": "ServiceCatgID",
+                      "sortProperty": "ServiceCatglist.ServiceCatgDesc",
+                      "template": "${data.ServiceCatglist?.ServiceCatgDesc}",
+                      "title": "Service Catglist"
+                    },
+                    {
+                      "filterProperty": "ServicesList.ServiceDesc",
+                      "groupProperty": "ServicesList.ServiceDesc",
+                      "property": "ServiceID",
+                      "sortProperty": "ServicesList.ServiceDesc",
+                      "template": "${data.ServicesList?.ServiceDesc}",
+                      "title": "Services List"
+                    },
+                    {
+                      "property": "assignTo",
+                      "title": "Assign To"
+                    },
+                    {
+                      "property": "AuditCC",
+                      "title": "Audit CC"
+                    },
+                    {
+                      "format": "",
+                      "property": "TicketResponseUser",
+                      "title": "Ticket Response User",
+                      "type": "string"
+                    }
+                  ],
+                  "count": "${getHelpDeskTicketsCount}",
+                  "data": "${getHelpDeskTicketsResult}",
+                  "events": {
+                    "cellRender": [
+                      {
+                        "code": " if (args.Data.TicketStatus==\"Closed\")\n                { \n            args.Attributes.Add(\"style\",$\"background-color:#d4edda\");\n            }\n            \n            if (args.Data.TicketStatus==\"New\")\n                { \n            args.Attributes.Add(\"style\",$\"background-color:#f8d7da\");\n            }",
+                        "type": "execute"
+                      }
+                    ],
+                    "loadData": [
+                      {
+                        "error": [
+                          {
+                            "detail": "Unable to load HelpDeskTickets",
+                            "severity": "error",
+                            "summary": "Error",
+                            "type": "notify"
+                          }
+                        ],
+                        "name": "authenticationconn.getHelpDeskTickets",
+                        "parameters": [
+                          {
+                            "name": "$top",
+                            "value": "event.top"
+                          },
+                          {
+                            "name": "$skip",
+                            "value": "event.skip"
+                          },
+                          {
+                            "name": "$count",
+                            "value": "event.top != null && event.skip != null"
+                          },
+                          {
+                            "name": "$filter",
+                            "operator": "or",
+                            "value": [
+                              {
+                                "operation": "contains",
+                                "property": "assignTo",
+                                "type": "string",
+                                "value": "\"${loginuseremail}\""
+                              },
+                              {
+                                "operation": "contains",
+                                "property": "AuditCC",
+                                "type": "string",
+                                "value": "\"${loginuseremail}\""
+                              }
+                            ]
+                          },
+                          {
+                            "name": "$orderby",
+                            "value": [
+                              {
+                                "value": "${event.orderby}"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "$expand",
+                            "value": "HelpDeskTicketDetails,HelpDeskStatus,LocationList,ServiceCatglist,ServicesList"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "name": "getHelpDeskTicketsResult",
+                            "type": "set",
+                            "value": "${result.Value.AsODataEnumerable()}",
+                            "valueType": "IEnumerable<Cpdhelpdesk.Models.Authenticationconn.HelpDeskTicket>"
+                          },
+                          {
+                            "name": "getHelpDeskTicketsCount",
+                            "type": "set",
+                            "value": "${result.Count}",
+                            "valueType": "int"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ],
+                    "render": [
+                      {
+                        "code": "if(args.FirstRender)\n        {\n            args.Grid.Groups.Add(new GroupDescriptor(){ Property = \"HelpDeskStatus.TicketStatusDesc\" });\n            args.Grid.OrderByDescending(\"Id\");\n               args.Grid.OrderBy(\"Id desc\");\n            StateHasChanged();\n            \n        }",
+                        "type": "execute"
+                      }
+                    ],
+                    "rowRender": [],
+                    "rowSelect": [
+                      {
+                        "parameters": [
+                          {
+                            "name": "Id",
+                            "value": "${event.Id}"
+                          }
+                        ],
+                        "path": "edit-i-help-desk-ticketwithdetails",
+                        "then": [],
+                        "type": "navigate"
+                      }
+                    ]
+                  },
+                  "filterMode": "advanced",
+                  "groupPanelText": "Group Here ",
+                  "itemType": "Cpdhelpdesk.Models.Authenticationconn.HelpDeskTicket",
+                  "name": "grid0",
+                  "pageSize": 10,
+                  "pagerPosition": "PagerPosition.Top",
+                  "responsive": true,
+                  "showPagingSummary": true,
+                  "style": {
+                    "height": "509px"
+                  },
+                  "template": "",
+                  "title": "",
+                  "type": "datagrid"
+                }
+              ],
+              "type": "col"
+            }
+          ],
+          "type": "row"
+        }
+      ],
+      "container": "main",
+      "type": "content"
+    },
+    {
+      "style": {
+        "backgroundColor": "#414141",
+        "border": "1px solid rgba(0, 0, 0, 0)",
+        "color": "#414141",
+        "display": "block",
+        "float": "none",
+        "fontWeight": "bold",
+        "height": "1227px",
+        "position": "absolute",
+        "visibility": "visible",
+        "width": "251px",
+        "zIndex": "3"
+      }
+    },
+    {
+      "style": {
+        "backgroundColor": "#414141",
+        "border": "1px solid rgba(0, 0, 0, 0)",
+        "color": "#414141",
+        "display": "block",
+        "float": "none",
+        "fontWeight": "bold",
+        "height": "1227px",
+        "position": "absolute",
+        "visibility": "visible",
+        "width": "251px",
+        "zIndex": "3"
+      }
+    }
+  ],
+  "events": {
+    "load": []
+  },
+  "layout": "widelayout",
+  "name": "IHelpDeskTicketwithdetails"
+}
