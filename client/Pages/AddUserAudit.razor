@@ -1,0 +1,72 @@
+﻿@page "/add-user-audit"
+@layout MainLayout
+@inherits Cpdhelpdesk.Pages.AddUserAuditComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using Cpdhelpdesk.Models.Authenticationconn
+@using Cpdhelpdesk.Models
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+@inject Microsoft.Extensions.Localization.IStringLocalizer<AddUserAudit> L
+<PageTitle>Add User Audit</PageTitle>
+<RadzenContent Container="main">
+  <ChildContent>
+    <div class="row">
+      <div class="col-md-12">
+        <RadzenTemplateForm Data="@useraudit" Visible="@(useraudit != null)" TItem="Cpdhelpdesk.Models.Authenticationconn.UserAudit" Submit="@Form0Submit">
+          <ChildContent>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Text="@L["UserIdLabel.Text"]" Component="UserId" style="width: 100%">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox MaxLength="128" style="width: 100%" @bind-Value="@(useraudit.UserId)" Name="UserId">
+                </RadzenTextBox>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Text="@L["TimestampLabel.Text"]" Component="Timestamp" style="width: 100%">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenDatePicker style="width: 100%" @bind-Value="@(useraudit.Timestamp)" Name="Timestamp">
+                </RadzenDatePicker>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Text="@L["AuditEventLabel.Text"]" Component="AuditEvent" style="width: 100%">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox MaxLength="50" style="width: 100%" @bind-Value="@(useraudit.AuditEvent)" Name="AuditEvent">
+                </RadzenTextBox>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Text="@L["IpAddressLabel.Text"]" Component="IpAddress" style="width: 100%">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox MaxLength="50" style="width: 100%" @bind-Value="@(useraudit.IpAddress)" Name="IpAddress">
+                </RadzenTextBox>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col offset-sm-3">
+                <RadzenButton ButtonType="ButtonType.Submit" Icon="save" Text="@L["button1.Text"]" ButtonStyle="ButtonStyle.Primary">
+                </RadzenButton>
+                <RadzenButton ButtonStyle="ButtonStyle.Light" style="margin-left: 1rem" Text="@L["button2.Text"]" Click="@Button2Click">
+                </RadzenButton>
+              </div>
+            </div>
+          </ChildContent>
+        </RadzenTemplateForm>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>
