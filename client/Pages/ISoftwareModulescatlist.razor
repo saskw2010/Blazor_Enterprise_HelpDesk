@@ -1,0 +1,62 @@
+﻿@page "/i-software-modulescatlist"
+@layout Landingpage1Layout
+@inherits Cpdhelpdesk.Pages.ISoftwareModulescatlistComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using Cpdhelpdesk.Models.Authenticationconn
+@using Cpdhelpdesk.Models
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+@inject Microsoft.Extensions.Localization.IStringLocalizer<ISoftwareModulescatlist> L
+<PageTitle>ISoftwareModulescatlist</PageTitle>
+<RadzenContent Container="main">
+  <ChildContent>
+    <div class="row">
+      <div class="col-md-12">
+        <RadzenProfileMenu style="display: inline-block; float: right; height: 39px; margin-top: 1px; width: 200px" Visible="@(Security.IsAuthenticated())" Top="0px" min-width="250px" clas="profilemenumos">
+          <ChildContent>
+            <RadzenProfileMenuItem Text="@L["profilemenu0.logout.Text"]" Value="Logout" Icon="power_settings_new">
+            </RadzenProfileMenuItem>
+          </ChildContent>
+          <Template>
+            <RadzenLabel Text="@($"{(Security.User?.Name)}")">
+            </RadzenLabel>
+          </Template>
+        </RadzenProfileMenu>
+        <RadzenHeading Size="H1" style="text-align: center" Text="@L["pageTitle.Text"]" class="Headerbar1">
+        </RadzenHeading>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <RadzenDataList @ref="datalist0" AllowPaging="true" Count="@getsoftcatcount" Data="@getsoftcategory" TItem="Cpdhelpdesk.Models.Authenticationconn.SoftwareModulescatlist" PageSize="98" style="display: inline-block" WrapItems="true" LoadData="@Datalist0LoadData">
+          <Template Context="data">
+          <RadzenCard class="flipping-cards">
+          
+                  <div class="flipping-card-wrapper">
+                      <div class="flipping-card-item-wrapper">
+                          <div class="flipping-card-item-side flipping-card-item-side-front">
+                              <img src="/assets/images/geny.png" alt="" class="flipping-card-item-img">
+                          </div>
+                          <div class="flipping-card-item-side flipping-card-item-side-back">
+                              <div class="flipping-card-back-wrapper">
+                                  <p>Hello I am learning how to create flipping cards using HTML & CSS, will you mind joining me?</p>
+                                  <button class="flipping-card-back-wrapper__btn">Read More</button>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                 
+          
+           </RadzenCard>
+          
+          
+          </Template>
+        </RadzenDataList>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>
+
+
