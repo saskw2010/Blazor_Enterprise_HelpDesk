@@ -1,0 +1,318 @@
+{
+  "components": [
+    {
+      "components": [
+        {
+          "class": "justify-content-start align-items-center",
+          "components": [
+            {
+              "class": "col-6 d-flex align-items-center",
+              "components": [
+                {
+                  "attributes": [
+                    {
+                      "name": "class",
+                      "value": "sidebartogglewidemain"
+                    }
+                  ],
+                  "events": {
+                    "click": [
+                      {
+                        "code": "await InvokeAsync(() => { sidebar0.Toggle(); });",
+                        "type": "execute"
+                      },
+                      {
+                        "code": "await InvokeAsync(() => { body0.Toggle(); });",
+                        "type": "execute"
+                      }
+                    ]
+                  },
+                  "icon": "wysiwyg",
+                  "name": "sidebar-toggle0",
+                  "style": {
+                    "border": "1px solid rgba(0, 0, 0, 0)",
+                    "height": "50px",
+                    "marginTop": "-15px",
+                    "width": "58px"
+                  },
+                  "type": "sidebar-toggle"
+                },
+                {
+                  "name": "label0",
+                  "style": {
+                    "color": "#f2f4f5",
+                    "height": "31px",
+                    "paddingLeft": "50px",
+                    "textAlign": "left",
+                    "width": "252.4375px"
+                  },
+                  "text": "CPD HELP DESK",
+                  "type": "label"
+                }
+              ],
+              "name": "leftCol",
+              "style": {
+                "backgroundColor": "#414141",
+                "border": "1px solid rgba(0, 0, 0, 0)",
+                "borderRadius": "1px",
+                "display": "inline-block",
+                "float": "none",
+                "fontWeight": "bold",
+                "height": "49px",
+                "paddingLeft": "0px",
+                "paddingRight": "0px",
+                "top": "1px"
+              },
+              "type": "col"
+            },
+            {
+              "class": "col-6 text-right",
+              "components": [
+                {
+                  "attributes": [
+                    {
+                      "name": "class",
+                      "value": "rz-dropdownlanguage"
+                    }
+                  ],
+                  "data": "@(new[] { new { Text=\"Arabic - Kuwait\", Value=\"ar-KW\" },new { Text=\"English - United States\", Value=\"en-US\" }})",
+                  "events": {
+                    "change": [
+                      {
+                        "code": "var redirect = new Uri(UriHelper.Uri).GetComponents(UriComponents.PathAndQuery | UriComponents.Fragment, UriFormat.UriEscaped);",
+                        "type": "execute"
+                      },
+                      {
+                        "code": "var query = $\"?culture={Uri.EscapeDataString((string)args)}&redirectUri={redirect}\";",
+                        "type": "execute"
+                      },
+                      {
+                        "code": "UriHelper.NavigateTo(\"Culture/SetCulture\" + query, forceLoad: true);",
+                        "type": "execute"
+                      }
+                    ]
+                  },
+                  "style": {
+                    "display": "inline-block",
+                    "height": "39px",
+                    "marginTop": "1px"
+                  },
+                  "textProperty": "Text",
+                  "type": "dropdown",
+                  "value": "${Culture}",
+                  "valueProperty": "Value",
+                  "valueType": "string"
+                },
+                {
+                  "attributes": [
+                    {
+                      "name": "margin-top",
+                      "value": ": 10px !important"
+                    },
+                    {
+                      "name": "min-width",
+                      "value": "250px"
+                    }
+                  ],
+                  "name": "profilemenu0wide",
+                  "style": {
+                    "display": "inline-block",
+                    "float": "right",
+                    "height": "39px",
+                    "marginTop": "1px",
+                    "width": "200px"
+                  },
+                  "template": [
+                    {
+                      "text": "${Security.User?.Name}",
+                      "type": "label"
+                    }
+                  ],
+                  "type": "profilemenu",
+                  "visible": "${Security.IsAuthenticated()}"
+                }
+              ],
+              "name": "rightCol",
+              "style": {
+                "backgroundColor": "#414141",
+                "borderRadius": "1px",
+                "display": "inline-block",
+                "float": "none",
+                "height": "49px",
+                "top": "1px",
+                "verticalAlign": "baseline"
+              },
+              "type": "col"
+            }
+          ],
+          "name": "headerRow",
+          "style": {
+            "backgroundColor": "#414141"
+          },
+          "type": "row"
+        }
+      ],
+      "name": "header0",
+      "style": {
+        "backgroundColor": "rgba(255, 255, 255, 0)"
+      },
+      "type": "header"
+    },
+    {
+      "attributes": [
+        {
+          "name": "class",
+          "value": "mosbody1main"
+        }
+      ],
+      "components": [
+        {
+          "attributes": [
+            {
+              "name": "class",
+              "value": "mosbody1conmain"
+            }
+          ],
+          "name": "main",
+          "type": "content-container"
+        }
+      ],
+      "name": "body0",
+      "style": {
+        "display": "block",
+        "float": "none",
+        "height": "1196px",
+        "marginLeft": "251px",
+        "marginTop": "57px",
+        "position": "static"
+      },
+      "type": "body"
+    },
+    {
+      "attributes": [
+        {
+          "name": "class",
+          "value": "mossidbar"
+        }
+      ],
+      "components": [
+        {
+          "attributes": [
+            {
+              "name": "background",
+              "value": "#414141"
+            }
+          ],
+          "events": {
+            "click": [
+              {
+                "code": "await InvokeAsync(() => { sidebar0.Toggle(); });\n\nawait InvokeAsync(() => { body0.Toggle(); });",
+                "type": "execute"
+              }
+            ]
+          },
+          "items": [
+            {
+              "icon": "add_task",
+              "path": "i-help-desk-tickets",
+              "text": "My Tickets",
+              "visible": true
+            },
+            {
+              "icon": "home",
+              "path": "icpdhelpdesk",
+              "text": "My Home ",
+              "visible": true
+            },
+            {
+              "icon": "admin_panel_settings",
+              "path": "services-lists",
+              "text": "administrator",
+              "visible": true
+            },
+            {
+              "icon": "navigate_next",
+              "path": "i-help-desk-ticketmasterdetails",
+              "text": "My Ticket Tree",
+              "visible": true
+            },
+            {
+              "icon": "preview",
+              "path": "i-help-desk-ticketmasterdetailsperuser",
+              "text": "My Tickets History",
+              "visible": true
+            },
+            {
+              "path": "i-ticket-requester-users-lists",
+              "text": "MyEmail"
+            }
+          ],
+          "name": "panelmenu0",
+          "style": {
+            "border": "1px solid rgba(0, 0, 0, 0)",
+            "borderRadius": "0px",
+            "display": "block",
+            "float": "none",
+            "height": "100%",
+            "width": "250px"
+          },
+          "type": "panelmenu"
+        }
+      ],
+      "name": "sidebar0",
+      "style": {
+        "backgroundColor": "#414141",
+        "border": "1px solid rgba(0, 0, 0, 0)",
+        "color": "#414141",
+        "display": "block",
+        "float": "none",
+        "fontWeight": "bold",
+        "height": "1227px",
+        "position": "absolute",
+        "visibility": "visible",
+        "width": "251px",
+        "zIndex": "3"
+      },
+      "type": "sidebar"
+    },
+    {
+      "components": [
+        {
+          "name": "footerText",
+          "text": "CPD, Copyright Ⓒ 2021",
+          "type": "label"
+        }
+      ],
+      "name": "footer0",
+      "style": {
+        "backgroundColor": "#414141",
+        "border": "1px solid rgba(0, 0, 0, 0)",
+        "color": "#7c8597",
+        "display": "block",
+        "position": "absolute",
+        "textAlign": "center",
+        "zIndex": "4"
+      },
+      "type": "footer"
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "Culture",
+        "type": "set",
+        "value": "\"\"",
+        "valueType": "string"
+      },
+      {
+        "code": "Culture = await JSRuntime.InvokeAsync<string>(\"Radzen.getCulture\");",
+        "type": "execute"
+      },
+      {
+        "code": "await InvokeAsync(() => { sidebar0.Toggle(); });\n\nawait InvokeAsync(() => { body0.Toggle(); });",
+        "type": "execute"
+      }
+    ]
+  },
+  "name": "widelayoutmain"
+}
