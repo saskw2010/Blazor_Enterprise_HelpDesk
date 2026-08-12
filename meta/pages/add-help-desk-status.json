@@ -1,0 +1,194 @@
+{
+  "components": [
+    {
+      "type": "content",
+      "container": "main",
+      "components": [
+        {
+          "type": "row",
+          "components": [
+            {
+              "type": "col",
+              "class": "col-md-12",
+              "components": [
+                {
+                  "type": "template-form",
+                  "name": "form0",
+                  "components": [
+                    {
+                      "type": "row",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "type": "label",
+                              "text": "Ticket Status",
+                              "component": "TicketStatus",
+                              "name": "TicketStatusLabel",
+                              "style": {
+                                "width": "100%"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "col",
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "valueType": "string",
+                              "maxLength": 50,
+                              "type": "textbox",
+                              "name": "TicketStatus",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "value": "${helpdeskstatus.TicketStatus}"
+                            },
+                            {
+                              "type": "required-validator",
+                              "name": "TicketStatusRequiredValidator",
+                              "component": "TicketStatus",
+                              "text": "TicketStatus is required",
+                              "style": {
+                                "position": "absolute"
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "row",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "type": "label",
+                              "text": "Ticket Status Desc",
+                              "component": "TicketStatusDesc",
+                              "name": "TicketStatusDescLabel",
+                              "style": {
+                                "width": "100%"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "col",
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "valueType": "string",
+                              "maxLength": 150,
+                              "type": "textbox",
+                              "name": "TicketStatusDesc",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "value": "${helpdeskstatus.TicketStatusDesc}"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "row",
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col offset-sm-3",
+                          "components": [
+                            {
+                              "type": "button",
+                              "buttonType": "submit",
+                              "icon": "save",
+                              "text": "Save",
+                              "buttonStyle": "primary"
+                            },
+                            {
+                              "type": "button",
+                              "buttonStyle": "light",
+                              "style": {
+                                "marginLeft": "1rem"
+                              },
+                              "text": "Cancel",
+                              "events": {
+                                "click": [
+                                  {
+                                    "type": "close-popup"
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ],
+                  "events": {
+                    "submit": [
+                      {
+                        "error": [
+                          {
+                            "detail": "Unable to create new HelpDeskStatus!",
+                            "severity": "error",
+                            "summary": "Error",
+                            "type": "notify"
+                          }
+                        ],
+                        "name": "authenticationconn.createHelpDeskStatus",
+                        "parameters": [
+                          {
+                            "name": "HelpDeskStatus",
+                            "value": "${helpdeskstatus}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "type": "close-popup",
+                            "result": "${helpdeskstatus}"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ]
+                  },
+                  "data": "${helpdeskstatus}",
+                  "visible": "${helpdeskstatus != null}",
+                  "itemType": "Cpdhelpdesk.Models.Authenticationconn.HelpDeskStatus"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "helpdeskstatus",
+        "type": "set",
+        "value": "new Cpdhelpdesk.Models.Authenticationconn.HelpDeskStatus(){}",
+        "valueType": "Cpdhelpdesk.Models.Authenticationconn.HelpDeskStatus"
+      }
+    ]
+  },
+  "name": "Add Help Desk Status",
+  "access": [
+    "Authenticated"
+  ],
+  "layout": "Main"
+}
