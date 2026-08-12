@@ -1,0 +1,72 @@
+﻿@inherits Cpdhelpdesk.Layouts.WidelayoutLayoutComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using Cpdhelpdesk.Models.Authenticationconn
+@using Cpdhelpdesk.Models
+@using Cpdhelpdesk.Pages
+@inject Microsoft.Extensions.Localization.IStringLocalizer<WidelayoutLayout> L
+<RadzenDialog />
+<RadzenNotification />
+<RadzenTooltip />
+<RadzenContextMenu />
+
+<RadzenHeader style="background-color: rgba(255, 255, 255, 0)">
+  <ChildContent>
+    <div class="row justify-content-start align-items-center" style="background-color: #414141">
+      <div class="col-6 d-flex align-items-center" style="background-color: #414141; border: 1px solid rgba(0, 0, 0, 0); border-radius: 1px; display: inline-block; float: none; font-weight: bold; height: 49px; padding-left: 0px; padding-right: 0px; top: 1px">
+        <RadzenSidebarToggle Icon="wysiwyg" style="border: 1px solid rgba(0, 0, 0, 0); height: 50px; margin-top: -15px; width: 58px" Click="@SidebarToggle0Click" class="sidebartogglewidemain">
+        </RadzenSidebarToggle>
+        <RadzenLabel style="color: #f2f4f5; height: 31px; padding-left: 50px; text-align: left; width: 252.4375px" Text="@L["label0.Text"]">
+        </RadzenLabel>
+      </div>
+      <div class="col-6 text-right" style="background-color: #414141; border-radius: 1px; display: inline-block; float: none; height: 49px; top: 1px; vertical-align: baseline">
+        <RadzenDropDown Data="@(new[] { new { Text="Arabic - Kuwait", Value="ar-KW" },new { Text="English - United States", Value="en-US" }})" style="display: inline-block; height: 39px; margin-top: 1px" TextProperty="Text" @bind-Value="@Culture" ValueProperty="Value" Name="Dropdown1" Change="@Dropdown1Change" class="rz-dropdownlanguage">
+        </RadzenDropDown>
+        <RadzenProfileMenu style="display: inline-block; float: right; height: 39px; margin-top: 1px; width: 200px" Visible="@(Security.IsAuthenticated())" margin-top=": 10px !important" min-width="250px">
+          <ChildContent>
+            <RadzenProfileMenuItem Text="@L["profilemenu0wide.logout.Text"]" Value="Logout" Icon="power_settings_new">
+            </RadzenProfileMenuItem>
+          </ChildContent>
+          <Template>
+            <RadzenLabel Text="@($"{(Security.User?.Name)}")">
+            </RadzenLabel>
+          </Template>
+        </RadzenProfileMenu>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenHeader>
+<RadzenBody @ref="body0" style="display: block; float: none; height: 1196px; margin-left: 251px; margin-top: 57px; position: static" class="mosbody1">
+  <ChildContent>
+    <RadzenContentContainer Name="main">
+    @Body
+    </RadzenContentContainer>
+  </ChildContent>
+</RadzenBody>
+<RadzenSidebar @ref="sidebar0" style="background-color: #414141; border: 1px solid rgba(0, 0, 0, 0); color: #414141; display: block; float: none; font-weight: bold; height: 1227px; position: absolute; visibility: visible; width: 251px; z-index: 3" class="mossidbar">
+  <ChildContent>
+    <RadzenPanelMenu style="border: 1px solid rgba(0, 0, 0, 0); border-radius: 0px; display: block; float: none; height: 100%; width: 250px" Click="@Panelmenu0Click" background="#414141">
+      <ChildContent>
+        <RadzenPanelMenuItem Icon="add_task" Path="i-help-desk-tickets" Text="@L["panelmenu0.i-help-desk-tickets.Text"]">
+        </RadzenPanelMenuItem>
+        <RadzenPanelMenuItem Icon="home" Path="icpdhelpdesk" Text="@L["panelmenu0.icpdhelpdesk.Text"]">
+        </RadzenPanelMenuItem>
+        <RadzenPanelMenuItem Icon="admin_panel_settings" Path="services-lists" Text="@L["panelmenu0.services-lists.Text"]" Visible="@(Security.IsInRole("cpdheldeskadmin"))">
+        </RadzenPanelMenuItem>
+        <RadzenPanelMenuItem Icon="navigate_next" Path="i-help-desk-ticketmasterdetails" Text="@L["panelmenu0.i-help-desk-ticketmasterdetails.Text"]" Visible="@Security.IsInRole(new string[]{"Authenticated"})">
+        </RadzenPanelMenuItem>
+        <RadzenPanelMenuItem Icon="preview" Path="i-help-desk-ticketmasterdetailsperuser" Text="@L["panelmenu0.i-help-desk-ticketmasterdetailsperuser.Text"]" Visible="@Security.IsInRole(new string[]{"Authenticated"})">
+        </RadzenPanelMenuItem>
+        <RadzenPanelMenuItem Path="i-ticket-requester-users-lists" Text="@L["panelmenu0.i-ticket-requester-users-lists.Text"]">
+        </RadzenPanelMenuItem>
+      </ChildContent>
+    </RadzenPanelMenu>
+  </ChildContent>
+</RadzenSidebar>
+<RadzenFooter style="background-color: #414141; border: 1px solid rgba(0, 0, 0, 0); color: #7c8597; display: block; position: absolute; text-align: center; z-index: 4">
+  <ChildContent>
+    <RadzenLabel Text="@L["footerText.Text"]">
+    </RadzenLabel>
+  </ChildContent>
+</RadzenFooter>
