@@ -1,0 +1,74 @@
+﻿@page "/site-contents"
+@layout MainLayout
+@inherits Cpdhelpdesk.Pages.SiteContentsComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using Cpdhelpdesk.Models.Authenticationconn
+@using Cpdhelpdesk.Models
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+@inject Microsoft.Extensions.Localization.IStringLocalizer<SiteContents> L
+<PageTitle>Site Contents</PageTitle>
+<RadzenContent Container="main">
+  <ChildContent>
+    <RadzenHeading Size="H1" Text="@L["pageTitle.Text"]">
+    </RadzenHeading>
+    <div class="row">
+      <div class="col-md-12">
+        <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px" Text="@L["button0.Text"]" Click="@Button0Click">
+        </RadzenButton>
+        <RadzenSplitButton Icon="get_app" style="margin-left: 10px; margin-bottom: 10px" Text="@L["splitbutton0.Text"]" Click="@Splitbutton0Click">
+          <ChildContent>
+            <RadzenSplitButtonItem Text="@L["splitbutton0.excel.Text"]" Value="xlsx">
+            </RadzenSplitButtonItem>
+            <RadzenSplitButtonItem Text="@L["splitbutton0.csv.Text"]" Value="csv">
+            </RadzenSplitButtonItem>
+          </ChildContent>
+        </RadzenSplitButton>
+        <RadzenTextBox Placeholder="@L["textbox0.Placeholder"]" style="display: block; margin-bottom: 10px; width: 100%" Name="Textbox0" @oninput="@(async(args) => {search = $"{args.Value}";await grid0.GoToPage(0);await grid0.Reload();})">
+        </RadzenTextBox>
+        <RadzenDataGrid @ref="grid0" AllowFiltering="true" FilterMode="Radzen.FilterMode.Advanced" AllowPaging="true" AllowSorting="true" Data="@getSiteContentsResult" Count="@getSiteContentsCount" TItem="Cpdhelpdesk.Models.Authenticationconn.SiteContent" LoadData="@Grid0LoadData" RowDoubleClick="@Grid0RowDoubleClick">
+          <Columns>
+            <RadzenDataGridColumn TItem="Cpdhelpdesk.Models.Authenticationconn.SiteContent" Property="SiteContentID" Title="@L["grid0.SiteContentID.Title"]">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Cpdhelpdesk.Models.Authenticationconn.SiteContent" Property="FileName" Title="@L["grid0.FileName.Title"]">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Cpdhelpdesk.Models.Authenticationconn.SiteContent" Property="Path" Title="@L["grid0.Path.Title"]">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Cpdhelpdesk.Models.Authenticationconn.SiteContent" Property="ContentType" Title="@L["grid0.ContentType.Title"]">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Cpdhelpdesk.Models.Authenticationconn.SiteContent" Property="Length" Title="@L["grid0.Length.Title"]">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Cpdhelpdesk.Models.Authenticationconn.SiteContent" Property="Text" Title="@L["grid0.Text.Title"]">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Cpdhelpdesk.Models.Authenticationconn.SiteContent" Property="Roles" Title="@L["grid0.Roles.Title"]">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Cpdhelpdesk.Models.Authenticationconn.SiteContent" Property="RoleExceptions" Title="@L["grid0.RoleExceptions.Title"]">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Cpdhelpdesk.Models.Authenticationconn.SiteContent" Property="Users" Title="@L["grid0.Users.Title"]">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Cpdhelpdesk.Models.Authenticationconn.SiteContent" Property="UserExceptions" Title="@L["grid0.UserExceptions.Title"]">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Cpdhelpdesk.Models.Authenticationconn.SiteContent" Property="Schedule" Title="@L["grid0.Schedule.Title"]">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Cpdhelpdesk.Models.Authenticationconn.SiteContent" Property="ScheduleExceptions" Title="@L["grid0.ScheduleExceptions.Title"]">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Cpdhelpdesk.Models.Authenticationconn.SiteContent" Property="CacheProfile" Title="@L["grid0.CacheProfile.Title"]">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Cpdhelpdesk.Models.Authenticationconn.SiteContent" Property="CreatedDate" FormatString="{0:MM/dd/yyyy}" Title="@L["grid0.CreatedDate.Title"]">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Cpdhelpdesk.Models.Authenticationconn.SiteContent" Property="ModifiedDate" FormatString="{0:MM/dd/yyyy}" Title="@L["grid0.ModifiedDate.Title"]">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Cpdhelpdesk.Models.Authenticationconn.SiteContent" Filterable="false" Sortable="false" Width="70px" TextAlign="TextAlign.Center">
+              <Template Context="cpdhelpdeskModelsAuthenticationconnSiteContent">
+                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@((args) =>GridDeleteButtonClick(args, cpdhelpdeskModelsAuthenticationconnSiteContent))" @onclick:stopPropagation="true">
+                </RadzenButton>
+              </Template>
+            </RadzenDataGridColumn>
+          </Columns>
+        </RadzenDataGrid>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>
