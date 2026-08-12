@@ -1,0 +1,327 @@
+{
+  "components": [
+    {
+      "components": [
+        {
+          "class": "justify-content-start align-items-center",
+          "components": [
+            {
+              "class": "col-6 d-flex align-items-center",
+              "components": [
+                {
+                  "events": {
+                    "click": [
+                      {
+                        "code": "await InvokeAsync(() => { sidebar0.Toggle(); });",
+                        "type": "execute"
+                      },
+                      {
+                        "code": "await InvokeAsync(() => { body0.Toggle(); });",
+                        "type": "execute"
+                      }
+                    ]
+                  },
+                  "name": "sidebar-toggle0",
+                  "type": "sidebar-toggle"
+                },
+                {
+                  "name": "label0",
+                  "text": "CPDHELPDESK",
+                  "type": "label"
+                }
+              ],
+              "name": "leftCol",
+              "type": "col"
+            },
+            {
+              "class": "col-6 text-right",
+              "components": [
+                {
+                  "data": "@(new[] { new { Text=\"Arabic - Kuwait\", Value=\"ar-KW\" },new { Text=\"English - United States\", Value=\"en-US\" }})",
+                  "events": {
+                    "change": [
+                      {
+                        "code": "var redirect = new Uri(UriHelper.Uri).GetComponents(UriComponents.PathAndQuery | UriComponents.Fragment, UriFormat.UriEscaped);",
+                        "type": "execute"
+                      },
+                      {
+                        "code": "var query = $\"?culture={Uri.EscapeDataString((string)args)}&redirectUri={redirect}\";",
+                        "type": "execute"
+                      },
+                      {
+                        "code": "UriHelper.NavigateTo(\"Culture/SetCulture\" + query, forceLoad: true);",
+                        "type": "execute"
+                      }
+                    ]
+                  },
+                  "textProperty": "Text",
+                  "type": "dropdown",
+                  "value": "${Culture}",
+                  "valueProperty": "Value",
+                  "valueType": "string"
+                },
+                {
+                  "name": "profilemenu0",
+                  "style": {
+                    "float": "left",
+                    "height": "35px",
+                    "width": "235.625px"
+                  },
+                  "template": [
+                    {
+                      "name": "label1",
+                      "style": {
+                        "height": "31px"
+                      },
+                      "text": "${Security.User?.Name}",
+                      "type": "label"
+                    }
+                  ],
+                  "type": "profilemenu",
+                  "visible": "${Security.IsAuthenticated()}"
+                }
+              ],
+              "name": "rightCol",
+              "type": "col"
+            }
+          ],
+          "name": "headerRow",
+          "type": "row"
+        }
+      ],
+      "name": "header0",
+      "type": "header"
+    },
+    {
+      "components": [
+        {
+          "name": "main",
+          "type": "content-container"
+        }
+      ],
+      "name": "body0",
+      "type": "body"
+    },
+    {
+      "components": [
+        {
+          "items": [
+            {
+              "path": "device-codes",
+              "text": "Device Codes",
+              "visible": "@Security.IsInRole(new string[]{\"Everybody\"})"
+            },
+            {
+              "path": "help-desk-statuses",
+              "text": "Help Desk Statuses",
+              "visible": "@Security.IsInRole(new string[]{\"Everybody\"})"
+            },
+            {
+              "path": "help-desk-tickets",
+              "text": "Help Desk Tickets",
+              "visible": "@Security.IsInRole(new string[]{\"Everybody\"})"
+            },
+            {
+              "path": "help-desk-ticket-details",
+              "text": "Help Desk Ticket Details",
+              "visible": "@Security.IsInRole(new string[]{\"Everybody\"})"
+            },
+            {
+              "path": "localization-resources",
+              "text": "Localization Resources",
+              "visible": "@Security.IsInRole(new string[]{\"Everybody\"})"
+            },
+            {
+              "path": "localization-resource-translations",
+              "text": "Localization Resource Translations",
+              "visible": "@Security.IsInRole(new string[]{\"Everybody\"})"
+            },
+            {
+              "path": "location-lists",
+              "text": "Location Lists",
+              "visible": "@Security.IsInRole(new string[]{\"Everybody\"})"
+            },
+            {
+              "path": "mrtcontroller-names",
+              "text": "Mrtcontroller Names",
+              "visible": "@Security.IsInRole(new string[]{\"Everybody\"})"
+            },
+            {
+              "path": "persisted-grants",
+              "text": "Persisted Grants",
+              "visible": "@Security.IsInRole(new string[]{\"Everybody\"})"
+            },
+            {
+              "path": "service-catglists",
+              "text": "Service Catglists",
+              "visible": "@Security.IsInRole(new string[]{\"Everybody\"})"
+            },
+            {
+              "path": "services-lists",
+              "text": "Services Lists",
+              "visible": "@Security.IsInRole(new string[]{\"Everybody\"})"
+            },
+            {
+              "path": "site-contents",
+              "text": "Site Contents",
+              "visible": "@Security.IsInRole(new string[]{\"Everybody\"})"
+            },
+            {
+              "path": "software-modulescatlists",
+              "text": "Software Modulescatlists",
+              "visible": "@Security.IsInRole(new string[]{\"Everybody\"})"
+            },
+            {
+              "path": "ticket-requester-users-lists",
+              "text": "Ticket Requester Users Lists",
+              "visible": "@Security.IsInRole(new string[]{\"Everybody\"})"
+            },
+            {
+              "path": "i-help-desk-tickets",
+              "text": "IHelp Desk Tickets",
+              "visible": "@Security.IsInRole(new string[]{\"Everybody\"})"
+            },
+            {
+              "path": "icpdhelpdesk",
+              "text": "ICPDHELPDESK",
+              "visible": "@Security.IsInRole(new string[]{\"Everybody\"})"
+            },
+            {
+              "path": "i-add-new-ticket",
+              "text": "IAddNewTicket",
+              "visible": "@Security.IsInRole(new string[]{\"Everybody\"})"
+            },
+            {
+              "path": "help-desk-ticketherarchy",
+              "text": "HelpDeskTicketherarchy",
+              "visible": "@Security.IsInRole(new string[]{\"Everybody\"})"
+            },
+            {
+              "path": "help-desk-ticketwithform",
+              "text": "HelpDeskTicketwithform",
+              "visible": "@Security.IsInRole(new string[]{\"Everybody\"})"
+            },
+            {
+              "path": "i-help-desk-ticketwithdetails",
+              "text": "IHelpDeskTicketwithdetails",
+              "visible": "@Security.IsInRole(new string[]{\"Everybody\"})"
+            },
+            {
+              "path": "i-help-desk-ticketmasterdetails",
+              "text": "IHelpDeskTicketmasterdetails",
+              "visible": "@Security.IsInRole(new string[]{\"Everybody\"})"
+            },
+            {
+              "path": "i-help-desk-ticketmasterdetailsperuser",
+              "text": "IHelpDeskTicketmasterdetailsperuser",
+              "visible": "@Security.IsInRole(new string[]{\"Everybody\"})"
+            },
+            {
+              "path": "software-modulescatlist",
+              "text": "SoftwareModulescatlist",
+              "visible": "@Security.IsInRole(new string[]{\"Everybody\"})"
+            },
+            {
+              "path": "i-software-modulescatlist",
+              "text": "ISoftwareModulescatlist",
+              "visible": "@Security.IsInRole(new string[]{\"Everybody\"})"
+            },
+            {
+              "path": "ic-software-modulescatlist",
+              "text": "ICSoftwareModulescatlist",
+              "visible": "@Security.IsInRole(new string[]{\"Everybody\"})"
+            },
+            {
+              "path": "i-soft",
+              "text": "ISoft",
+              "visible": "@Security.IsInRole(new string[]{\"Everybody\"})"
+            },
+            {
+              "path": "copy-of-i-soft",
+              "text": "Copy of ISoft",
+              "visible": "@Security.IsInRole(new string[]{\"Everybody\"})"
+            },
+            {
+              "path": "ic-software-modulescatlist-1",
+              "text": "ICSoftwareModulescatlist1",
+              "visible": "@Security.IsInRole(new string[]{\"Everybody\"})"
+            },
+            {
+              "path": "user-audits",
+              "text": "User Audits",
+              "visible": "@Security.IsInRole(new string[]{\"Everybody\"})"
+            },
+            {
+              "path": "i-soft-1",
+              "text": "ISoft1",
+              "visible": "@Security.IsInRole(new string[]{\"Everybody\"})"
+            },
+            {
+              "path": "ic-software-modulescatlist-2",
+              "text": "ICSoftwareModulescatlist2",
+              "visible": "@Security.IsInRole(new string[]{\"Everybody\"})"
+            },
+            {
+              "path": "ic-software-modulescatlist-3",
+              "text": "ICSoftwareModulescatlist3",
+              "visible": "@Security.IsInRole(new string[]{\"Everybody\"})"
+            },
+            {
+              "path": "ihelpdeskassintome",
+              "text": "Ihelpdeskassintome",
+              "visible": "@Security.IsInRole(new string[]{\"Everybody\"})"
+            },
+            {
+              "path": "iccpdhelpdesk",
+              "text": "ICCPDHELPDESK",
+              "visible": "@Security.IsInRole(new string[]{\"Everybody\"})"
+            },
+            {
+              "path": "emp-departments",
+              "text": "Emp Departments",
+              "visible": "@Security.IsInRole(new string[]{\"Everybody\"})"
+            },
+            {
+              "path": "emp-joblists",
+              "text": "Emp Joblists",
+              "visible": "@Security.IsInRole(new string[]{\"Everybody\"})"
+            }
+          ],
+          "name": "panelmenu0",
+          "style": {
+            "height": "100%"
+          },
+          "type": "panelmenu"
+        }
+      ],
+      "name": "sidebar0",
+      "type": "sidebar"
+    },
+    {
+      "components": [
+        {
+          "name": "footerText",
+          "text": "CPDHELPDESK, Copyright Ⓒ 2021",
+          "type": "label"
+        }
+      ],
+      "name": "footer0",
+      "type": "footer"
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "Culture",
+        "type": "set",
+        "value": "\"\"",
+        "valueType": "string"
+      },
+      {
+        "code": "Culture = await JSRuntime.InvokeAsync<string>(\"Radzen.getCulture\");",
+        "type": "execute"
+      }
+    ]
+  },
+  "name": "Main"
+}
