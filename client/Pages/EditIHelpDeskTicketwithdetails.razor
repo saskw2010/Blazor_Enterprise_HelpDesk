@@ -1,0 +1,221 @@
+﻿@page "/edit-i-help-desk-ticketwithdetails/{Id}"
+@layout WidelayoutLayout
+@inherits Cpdhelpdesk.Pages.EditIHelpDeskTicketwithdetailsComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using Cpdhelpdesk.Models.Authenticationconn
+@using Cpdhelpdesk.Models
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+@inject Microsoft.Extensions.Localization.IStringLocalizer<EditIHelpDeskTicketwithdetails> L
+<PageTitle>Edit I Help Desk Ticketwithdetails</PageTitle>
+<RadzenContent Container="main">
+  <ChildContent>
+    <RadzenHeading Size="H1" Text="@L["pageTitle.Text"]">
+    </RadzenHeading>
+    <div  class="row">
+      <div class="col-md-9">
+        <RadzenLabel style="font-weight: bold" Text="@L["closeLabel.Text"]" Visible="@(!canEdit)">
+        </RadzenLabel>
+      </div>
+      <div class="col-md-3">
+        <RadzenButton ButtonStyle="ButtonStyle.Secondary" style="margin-bottom: 20px; width: 138.8125px" Text="@L["closeButton.Text"]" Visible="@(!canEdit)" Click="@CloseButtonClick">
+        </RadzenButton>
+      </div>
+    </div>
+    <div  class="row">
+      <div class="col-md-9">
+        <RadzenLabel style="font-weight: bold" Text="@L["label0.Text"]" Visible="@hasChanges">
+        </RadzenLabel>
+      </div>
+      <div class="col-md-3">
+        <RadzenButton ButtonStyle="ButtonStyle.Secondary" Icon="autorenew" style="margin-bottom: 20px" Text="@L["button0.Text"]" Visible="@hasChanges" Click="@Button0Click">
+        </RadzenButton>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <RadzenTemplateForm Data="@helpdeskticket" TItem="Cpdhelpdesk.Models.Authenticationconn.HelpDeskTicket" style="height: 602px" Visible="@(helpdeskticket != null && canEdit)" Submit="@Form0Submit">
+          <ChildContent>
+            <div style="margin-bottom: 1rem; visibility: hidden" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="TicketGUID" style="width: 100%" Text="@L["TicketGUIDLabel.Text"]">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox Disabled="true" MaxLength="500" style="width: 244.75px" @bind-Value="@(helpdeskticket.TicketGUID)" Name="TicketGUID">
+                </RadzenTextBox>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <RadzenButton ButtonStyle="ButtonStyle.Secondary" style="display: inline-block; float: left; position: relative; width: 130.75px" Text="@L["Cancel.Text"]" Visible="@(Security.IsInRole("it","cpdheldeskadmin"))" Click="@CancelClick">
+                </RadzenButton>
+              </div>
+              <div class="col-md-9" style="margin-bottom: 21px">
+                <RadzenButton ButtonStyle="ButtonStyle.Light" style="background-color: #598087; color: #e6ecef; margin-left: 1rem; width: 126.96875px" Text="@L["button1.Text"]" Visible="@(Security.IsInRole("cpdheldeskadmin"))" Click="@Button1Click">
+                </RadzenButton>
+                <RadzenButton ButtonStyle="ButtonStyle.Light" style="background-color: #598087; color: #e6ecef; margin-left: 1rem; width: 126.96875px" Text="@L["button2.Text"]" Visible="@(Security.IsInRole("it"))" Click="@Button2Click">
+                </RadzenButton>
+                <RadzenButton ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" Icon="save" style="margin-left: 16px" Text="@L["button3.Text"]" Visible="@(Security.IsInRole("it","cpdheldeskadmin"))">
+                </RadzenButton>
+                <RadzenButton ButtonStyle="ButtonStyle.Secondary" style="display: block; float: left; position: relative; vertical-align: middle; width: 117.8125px" Text="@L["button4.Text"]" Visible="@(!Security.IsInRole("it") && !Security.IsInRole("cpdheldeskadmin"))" Click="@Button4Click">
+                </RadzenButton>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="TicketStatus" style="width: 100%" Text="@L["TicketStatusLabel.Text"]">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenDropDownDataGrid Count="@getHelpDeskStatusesForTicketStatusCount" Data="@getHelpDeskStatusesForTicketStatusResult" Disabled="@(!Security.IsInRole("it","cpdheldeskadmin"))" PageSize="150" Placeholder="@L["TicketStatus.Placeholder"]" Responsive="true" SelectedValue="@getByHelpDeskStatusesForTicketStatusResult" ShowSearch="false"  TextProperty="TicketStatusDesc" @bind-Value="@(helpdeskticket.TicketStatus)" ValueProperty="TicketStatus" Name="TicketStatus" LoadData="@TicketStatusLoadData">
+                </RadzenDropDownDataGrid>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="TicketDate" style="width: 100%" Text="@L["TicketDateLabel.Text"]">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenDatePicker DateFormat="dd-mm-yyyy" Disabled="true" HourFormat="12"  @bind-Value="@(helpdeskticket.TicketDate)" Name="TicketDate">
+                </RadzenDatePicker>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="TicketDescription" style="width: 100%" Text="@L["TicketDescriptionLabel.Text"]">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenRequiredValidator Component="TicketDescription" style="position: absolute" Text="@L["TicketDescriptionRequiredValidator.Text"]">
+                </RadzenRequiredValidator>
+                <RadzenHtmlEditor Disabled="true" style="width: 579px" UploadUrl="upload/image" @bind-Value="@(helpdeskticket.TicketDescription)" Name="TicketDescription">
+                  <ChildContent>
+                    <RadzenHtmlEditorSeparator>
+                    </RadzenHtmlEditorSeparator>
+                  </ChildContent>
+                </RadzenHtmlEditor>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="TicketRequesterUser" style="width: 100%" Text="@L["TicketRequesterUserLabel.Text"]">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox Disabled="true" MaxLength="250" style="display: flex" @bind-Value="@(helpdeskticket.TicketRequesterUser)" Name="TicketRequesterUser">
+                </RadzenTextBox>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="TicketRequesterEmail" style="width: 100%" Text="@L["TicketRequesterEmailLabel.Text"]">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox Disabled="true" MaxLength="500" style="display: block; position: static" @bind-Value="@(helpdeskticket.TicketRequesterEmail)" Name="TicketRequesterEmail">
+                </RadzenTextBox>
+                <RadzenRequiredValidator Component="TicketRequesterEmail" style="position: absolute" Text="@L["TicketRequesterEmailRequiredValidator.Text"]">
+                </RadzenRequiredValidator>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="locationID" style="width: 100%" Text="@L["locationIDLabel.Text"]">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenDropDownDataGrid Count="@getLocationListsForlocationIDCount" Data="@getLocationListsForlocationIDResult" Disabled="true" PageSize="150" Placeholder="@L["locationID.Placeholder"]" Responsive="true" SelectedValue="@getByLocationListsForlocationIDResult" ShowSearch="false" style="display: block" TextProperty="locationDesc" @bind-Value="@(helpdeskticket.locationID)" ValueProperty="locationID" Name="LocationID" LoadData="@LocationIdLoadData">
+                </RadzenDropDownDataGrid>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="ServiceCatgID" style="width: 100%" Text="@L["ServiceCatgIDLabel.Text"]">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenDropDownDataGrid Count="@getServiceCatglistsForServiceCatgIDCount" Data="@getServiceCatglistsForServiceCatgIDResult" Disabled="true" PageSize="150" Placeholder="@L["ServiceCatgID.Placeholder"]" Responsive="true" SelectedValue="@getByServiceCatglistsForServiceCatgIDResult" ShowSearch="false" style="display: block" TextProperty="ServiceCatgDesc" @bind-Value="@(helpdeskticket.ServiceCatgID)" ValueProperty="ServiceCatgID" Name="ServiceCatgID" LoadData="@ServiceCatgIdLoadData">
+                </RadzenDropDownDataGrid>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="ServiceID" style="width: 100%" Text="@L["ServiceIDLabel.Text"]">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenDropDownDataGrid Count="@getServicesListsForServiceIDCount" Data="@getServicesListsForServiceIDResult" Disabled="true" PageSize="150" Placeholder="@L["ServiceID.Placeholder"]" Responsive="true" SelectedValue="@getByServicesListsForServiceIDResult" ShowSearch="false" style="width: 628.75px" TextProperty="ServiceDesc" @bind-Value="@(helpdeskticket.ServiceID)" ValueProperty="ServiceID" Name="ServiceID" LoadData="@ServiceIdLoadData">
+                </RadzenDropDownDataGrid>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem; visibility: hidden" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="assignTo" style="width: 100%" Text="@L["assignToLabel.Text"]">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox Disabled="true" MaxLength="250" style="width: 229.75px" @bind-Value="@(helpdeskticket.assignTo)" Name="AssignTo">
+                </RadzenTextBox>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem; visibility: hidden" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="AuditCC" style="width: 100%" Text="@L["AuditCCLabel.Text"]">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox Disabled="true" MaxLength="250" style="width: 226.75px" @bind-Value="@(helpdeskticket.AuditCC)" Name="AuditCC">
+                </RadzenTextBox>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="TicketResponseUser" style="width: 100%" Text="@L["TicketResponseUserLabel.Text"]">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox Disabled="true" MaxLength="250" style="width: 100%" @bind-Value="@(helpdeskticket.TicketResponseUser)" Name="TicketResponseUser">
+                </RadzenTextBox>
+              </div>
+            </div>
+          </ChildContent>
+        </RadzenTemplateForm>
+      </div>
+    </div>
+    <div style="height: 801px" class="row">
+      <RadzenTemplateForm TItem="dynamic">
+        <ChildContent>
+          <div class="row">
+            <div class="col-md-12">
+              <RadzenDataList @ref="datalist0" AllowPaging="true" Count="@getHelpDeskTicketDetailsCount" Data="@getHelpDeskTicketDetailsResult" TItem="Cpdhelpdesk.Models.Authenticationconn.HelpDeskTicketDetail" PageSize="30" style="height: 796px; width: 879.265625px" WrapItems="false">
+                <Template Context="data">
+                <div style="margin-bottom: 1rem" class="row">
+                <div class="col-md-3">
+                Responser:
+                                              <div>@data.TicketResponseUser</div>
+                                          </div>
+                                          <div class="col-md-3">
+                                              <div>@data.TicketDetailDate</div>
+                                          </div>
+                                          <div class="col-md-9">
+                                              <div>@data.TicketDescription</div>
+                </div></div>
+                
+                
+                
+                
+                </Template>
+              </RadzenDataList>
+            </div>
+          </div>
+        </ChildContent>
+      </RadzenTemplateForm>
+    </div>
+  </ChildContent>
+</RadzenContent>
+
+
