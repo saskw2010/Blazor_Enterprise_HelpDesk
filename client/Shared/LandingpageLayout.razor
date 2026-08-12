@@ -1,0 +1,30 @@
+﻿@inherits Cpdhelpdesk.Layouts.LandingpageLayoutComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using Cpdhelpdesk.Models.Authenticationconn
+@using Cpdhelpdesk.Models
+@using Cpdhelpdesk.Pages
+@inject Microsoft.Extensions.Localization.IStringLocalizer<LandingpageLayout> L
+<RadzenDialog />
+<RadzenNotification />
+<RadzenTooltip />
+<RadzenContextMenu />
+
+<RadzenBody @ref="body0" style="height: 661px; margin-left: 0px; margin-top: 10px" class="mosbody">
+  <ChildContent>
+    <RadzenContentContainer Name="main">
+    @Body
+    </RadzenContentContainer>
+  </ChildContent>
+</RadzenBody>
+<RadzenFooter>
+  <ChildContent>
+    <div class="row">
+      <div class="col-md-12">
+        <RadzenLabel style="text-align: center; width: 100%" Text="@L["label2.Text"]" class="footerTextlanding">
+        </RadzenLabel>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenFooter>
