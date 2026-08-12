@@ -1,0 +1,122 @@
+﻿@page "/add-mrtcontroller-name"
+@layout MainLayout
+@inherits Cpdhelpdesk.Pages.AddMrtcontrollerNameComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using Cpdhelpdesk.Models.Authenticationconn
+@using Cpdhelpdesk.Models
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+@inject Microsoft.Extensions.Localization.IStringLocalizer<AddMrtcontrollerName> L
+<PageTitle>Add Mrtcontroller Name</PageTitle>
+<RadzenContent Container="main">
+  <ChildContent>
+    <div class="row">
+      <div class="col-md-12">
+        <RadzenTemplateForm Data="@mrtcontrollername" Visible="@(mrtcontrollername != null)" TItem="Cpdhelpdesk.Models.Authenticationconn.MrtcontrollerName" Submit="@Form0Submit">
+          <ChildContent>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Text="@L["controllerNameLabel.Text"]" Component="controllerName" style="width: 100%">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox MaxLength="150" style="width: 100%" @bind-Value="@(mrtcontrollername.controllerName)" Name="ControllerName">
+                </RadzenTextBox>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Text="@L["ReportCodeLabel.Text"]" Component="ReportCode" style="width: 100%">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox MaxLength="150" style="width: 100%" @bind-Value="@(mrtcontrollername.ReportCode)" Name="ReportCode">
+                </RadzenTextBox>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Text="@L["NotesLabel.Text"]" Component="Notes" style="width: 100%">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox MaxLength="150" style="width: 100%" @bind-Value="@(mrtcontrollername.Notes)" Name="Notes">
+                </RadzenTextBox>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Text="@L["Notes1Label.Text"]" Component="Notes1" style="width: 100%">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox MaxLength="150" style="width: 100%" @bind-Value="@(mrtcontrollername.Notes1)" Name="Notes1">
+                </RadzenTextBox>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Text="@L["mynotesLabel.Text"]" Component="mynotes" style="width: 100%">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox MaxLength="150" style="width: 100%" @bind-Value="@(mrtcontrollername.mynotes)" Name="Mynotes">
+                </RadzenTextBox>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Text="@L["ModifiedByLabel.Text"]" Component="ModifiedBy" style="width: 100%">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox MaxLength="50" style="width: 100%" @bind-Value="@(mrtcontrollername.ModifiedBy)" Name="ModifiedBy">
+                </RadzenTextBox>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Text="@L["ModifiedOnLabel.Text"]" Component="ModifiedOn" style="width: 100%">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenDatePicker DateFormat="MM/dd/yyyy" style="width: 100%" @bind-Value="@(mrtcontrollername.ModifiedOn)" Name="ModifiedOn">
+                </RadzenDatePicker>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Text="@L["CreatedByLabel.Text"]" Component="CreatedBy" style="width: 100%">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox MaxLength="50" style="width: 100%" @bind-Value="@(mrtcontrollername.CreatedBy)" Name="CreatedBy">
+                </RadzenTextBox>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Text="@L["CreatedOnLabel.Text"]" Component="CreatedOn" style="width: 100%">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenDatePicker DateFormat="MM/dd/yyyy" style="width: 100%" @bind-Value="@(mrtcontrollername.CreatedOn)" Name="CreatedOn">
+                </RadzenDatePicker>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col offset-sm-3">
+                <RadzenButton ButtonType="ButtonType.Submit" Icon="save" Text="@L["button1.Text"]" ButtonStyle="ButtonStyle.Primary">
+                </RadzenButton>
+                <RadzenButton ButtonStyle="ButtonStyle.Light" style="margin-left: 1rem" Text="@L["button2.Text"]" Click="@Button2Click">
+                </RadzenButton>
+              </div>
+            </div>
+          </ChildContent>
+        </RadzenTemplateForm>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>
