@@ -1,0 +1,142 @@
+﻿@page "/add-persisted-grant"
+@layout MainLayout
+@inherits Cpdhelpdesk.Pages.AddPersistedGrantComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using Cpdhelpdesk.Models.Authenticationconn
+@using Cpdhelpdesk.Models
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+@inject Microsoft.Extensions.Localization.IStringLocalizer<AddPersistedGrant> L
+<PageTitle>Add Persisted Grant</PageTitle>
+<RadzenContent Container="main">
+  <ChildContent>
+    <div class="row">
+      <div class="col-md-12">
+        <RadzenTemplateForm Data="@persistedgrant" Visible="@(persistedgrant != null)" TItem="Cpdhelpdesk.Models.Authenticationconn.PersistedGrant" Submit="@Form0Submit">
+          <ChildContent>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Text="@L["KeyLabel.Text"]" Component="Key" style="width: 100%">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox MaxLength="200" style="display: block; width: 100%" @bind-Value="@(persistedgrant.Key)" Name="Key">
+                </RadzenTextBox>
+                <RadzenRequiredValidator Component="Key" Text="@L["KeyRequiredValidator.Text"]" style="position: absolute">
+                </RadzenRequiredValidator>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Text="@L["TypeLabel.Text"]" Component="Type" style="width: 100%">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox MaxLength="50" style="display: block; width: 100%" @bind-Value="@(persistedgrant.Type)" Name="Type">
+                </RadzenTextBox>
+                <RadzenRequiredValidator Component="Type" Text="@L["TypeRequiredValidator.Text"]" style="position: absolute">
+                </RadzenRequiredValidator>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Text="@L["SubjectIdLabel.Text"]" Component="SubjectId" style="width: 100%">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox MaxLength="200" style="width: 100%" @bind-Value="@(persistedgrant.SubjectId)" Name="SubjectId">
+                </RadzenTextBox>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Text="@L["SessionIdLabel.Text"]" Component="SessionId" style="width: 100%">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox MaxLength="100" style="width: 100%" @bind-Value="@(persistedgrant.SessionId)" Name="SessionId">
+                </RadzenTextBox>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Text="@L["ClientIdLabel.Text"]" Component="ClientId" style="width: 100%">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox MaxLength="200" style="display: block; width: 100%" @bind-Value="@(persistedgrant.ClientId)" Name="ClientId">
+                </RadzenTextBox>
+                <RadzenRequiredValidator Component="ClientId" Text="@L["ClientIdRequiredValidator.Text"]" style="position: absolute">
+                </RadzenRequiredValidator>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Text="@L["DescriptionLabel.Text"]" Component="Description" style="width: 100%">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox MaxLength="200" style="width: 100%" @bind-Value="@(persistedgrant.Description)" Name="Description">
+                </RadzenTextBox>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Text="@L["CreationTimeLabel.Text"]" Component="CreationTime" style="width: 100%">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenDatePicker DateFormat="MM/dd/yyyy" style="display: block; width: 100%" @bind-Value="@(persistedgrant.CreationTime)" Name="CreationTime">
+                </RadzenDatePicker>
+                <RadzenRequiredValidator Component="CreationTime" Text="@L["CreationTimeRequiredValidator.Text"]" style="position: absolute">
+                </RadzenRequiredValidator>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Text="@L["ExpirationLabel.Text"]" Component="Expiration" style="width: 100%">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenDatePicker DateFormat="MM/dd/yyyy" style="width: 100%" @bind-Value="@(persistedgrant.Expiration)" Name="Expiration">
+                </RadzenDatePicker>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Text="@L["ConsumedTimeLabel.Text"]" Component="ConsumedTime" style="width: 100%">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenDatePicker DateFormat="MM/dd/yyyy" style="width: 100%" @bind-Value="@(persistedgrant.ConsumedTime)" Name="ConsumedTime">
+                </RadzenDatePicker>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Text="@L["DataLabel.Text"]" Component="Data" style="width: 100%">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox style="display: block; width: 100%" @bind-Value="@(persistedgrant.Data)" Name="Data">
+                </RadzenTextBox>
+                <RadzenRequiredValidator Component="Data" Text="@L["DataRequiredValidator.Text"]" style="position: absolute">
+                </RadzenRequiredValidator>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col offset-sm-3">
+                <RadzenButton ButtonType="ButtonType.Submit" Icon="save" Text="@L["button1.Text"]" ButtonStyle="ButtonStyle.Primary">
+                </RadzenButton>
+                <RadzenButton ButtonStyle="ButtonStyle.Light" style="margin-left: 1rem" Text="@L["button2.Text"]" Click="@Button2Click">
+                </RadzenButton>
+              </div>
+            </div>
+          </ChildContent>
+        </RadzenTemplateForm>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>
