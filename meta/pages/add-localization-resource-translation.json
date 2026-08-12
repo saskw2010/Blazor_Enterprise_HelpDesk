@@ -1,0 +1,340 @@
+{
+  "components": [
+    {
+      "type": "content",
+      "container": "main",
+      "components": [
+        {
+          "type": "row",
+          "components": [
+            {
+              "type": "col",
+              "class": "col-md-12",
+              "components": [
+                {
+                  "type": "template-form",
+                  "name": "form0",
+                  "components": [
+                    {
+                      "type": "row",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "type": "label",
+                              "text": "Language",
+                              "component": "Language",
+                              "name": "LanguageLabel",
+                              "style": {
+                                "width": "100%"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "col",
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "valueType": "string",
+                              "maxLength": 10,
+                              "type": "textbox",
+                              "name": "Language",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "value": "${localizationresourcetranslation.Language}"
+                            },
+                            {
+                              "type": "required-validator",
+                              "name": "LanguageRequiredValidator",
+                              "component": "Language",
+                              "text": "Language is required",
+                              "style": {
+                                "position": "absolute"
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "row",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "type": "label",
+                              "text": "Localization Resource",
+                              "component": "ResourceId",
+                              "name": "ResourceIdLabel",
+                              "style": {
+                                "width": "100%"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "col",
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "data": "${getLocalizationResourcesForResourceIdResult}",
+                              "textProperty": "Author",
+                              "valueProperty": "Id",
+                              "placeholder": "Choose LocalizationResource",
+                              "valueType": "int",
+                              "showSearch": false,
+                              "count": "${getLocalizationResourcesForResourceIdCount}",
+                              "type": "dropdown-datagrid",
+                              "name": "ResourceId",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "events": {
+                                "loadData": [
+                                  {
+                                    "name": "authenticationconn.getLocalizationResources",
+                                    "parameters": [
+                                      {
+                                        "name": "$top",
+                                        "value": "${event.top}"
+                                      },
+                                      {
+                                        "name": "$skip",
+                                        "value": "${event.skip}"
+                                      },
+                                      {
+                                        "name": "$orderby",
+                                        "value": "${event.orderby}"
+                                      },
+                                      {
+                                        "name": "$filter",
+                                        "value": "${event.filter}"
+                                      },
+                                      {
+                                        "name": "$count",
+                                        "value": "true"
+                                      }
+                                    ],
+                                    "then": [
+                                      {
+                                        "name": "getLocalizationResourcesForResourceIdResult",
+                                        "type": "set",
+                                        "value": "${result.Value.AsODataEnumerable()}",
+                                        "valueType": "IEnumerable<Cpdhelpdesk.Models.Authenticationconn.LocalizationResource>"
+                                      },
+                                      {
+                                        "name": "getLocalizationResourcesForResourceIdCount",
+                                        "type": "set",
+                                        "value": "result.Count"
+                                      }
+                                    ],
+                                    "type": "invoke"
+                                  }
+                                ]
+                              },
+                              "value": "${localizationresourcetranslation.ResourceId}"
+                            },
+                            {
+                              "type": "required-validator",
+                              "name": "ResourceIdRequiredValidator",
+                              "component": "ResourceId",
+                              "text": "ResourceId is required",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "defaultValue": "0"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "row",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "type": "label",
+                              "text": "Value",
+                              "component": "Value",
+                              "name": "ValueLabel",
+                              "style": {
+                                "width": "100%"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "col",
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "valueType": "string",
+                              "type": "textbox",
+                              "name": "Value",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "value": "${localizationresourcetranslation.Value}"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "row",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "type": "label",
+                              "text": "Modification Date",
+                              "component": "ModificationDate",
+                              "name": "ModificationDateLabel",
+                              "style": {
+                                "width": "100%"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "col",
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "valueType": "DateTime",
+                              "dateFormat": "MM/dd/yyyy",
+                              "type": "datepicker",
+                              "name": "ModificationDate",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "value": "${localizationresourcetranslation.ModificationDate}"
+                            },
+                            {
+                              "type": "required-validator",
+                              "name": "ModificationDateRequiredValidator",
+                              "component": "ModificationDate",
+                              "text": "ModificationDate is required",
+                              "style": {
+                                "position": "absolute"
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "row",
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col offset-sm-3",
+                          "components": [
+                            {
+                              "type": "button",
+                              "buttonType": "submit",
+                              "icon": "save",
+                              "text": "Save",
+                              "buttonStyle": "primary"
+                            },
+                            {
+                              "type": "button",
+                              "buttonStyle": "light",
+                              "style": {
+                                "marginLeft": "1rem"
+                              },
+                              "text": "Cancel",
+                              "events": {
+                                "click": [
+                                  {
+                                    "type": "close-popup"
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ],
+                  "events": {
+                    "submit": [
+                      {
+                        "error": [
+                          {
+                            "detail": "Unable to create new LocalizationResourceTranslation!",
+                            "severity": "error",
+                            "summary": "Error",
+                            "type": "notify"
+                          }
+                        ],
+                        "name": "authenticationconn.createLocalizationResourceTranslation",
+                        "parameters": [
+                          {
+                            "name": "LocalizationResourceTranslation",
+                            "value": "${localizationresourcetranslation}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "type": "close-popup",
+                            "result": "${localizationresourcetranslation}"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ]
+                  },
+                  "data": "${localizationresourcetranslation}",
+                  "visible": "${localizationresourcetranslation != null}",
+                  "itemType": "Cpdhelpdesk.Models.Authenticationconn.LocalizationResourceTranslation"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "localizationresourcetranslation",
+        "type": "set",
+        "value": "new Cpdhelpdesk.Models.Authenticationconn.LocalizationResourceTranslation(){}",
+        "valueType": "Cpdhelpdesk.Models.Authenticationconn.LocalizationResourceTranslation"
+      }
+    ]
+  },
+  "name": "Add Localization Resource Translation",
+  "access": [
+    "Authenticated"
+  ],
+  "layout": "Main"
+}
