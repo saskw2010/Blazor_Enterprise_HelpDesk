@@ -1,0 +1,60 @@
+{
+  "components": [
+    {
+      "attributes": [
+        {
+          "name": "class",
+          "value": "mosbody"
+        }
+      ],
+      "components": [
+        {
+          "name": "main",
+          "type": "content-container"
+        }
+      ],
+      "name": "body0",
+      "style": {
+        "height": "661px",
+        "marginLeft": "0px",
+        "marginTop": "10px"
+      },
+      "type": "body"
+    },
+    {
+      "components": [
+        {
+          "components": [
+            {
+              "class": "col-md-12",
+              "components": [
+                {
+                  "attributes": [
+                    {
+                      "name": "class",
+                      "value": "footerTextlanding"
+                    }
+                  ],
+                  "name": "label2",
+                  "style": {
+                    "textAlign": "center",
+                    "width": "100%"
+                  },
+                  "text": "تطوير ادارة نظم  تكنولوجيا المعلومات  - 2021",
+                  "type": "label"
+                }
+              ],
+              "name": "col1",
+              "type": "col"
+            }
+          ],
+          "name": "row0",
+          "type": "row"
+        }
+      ],
+      "name": "footer0",
+      "type": "footer"
+    }
+  ],
+  "name": "landingpage"
+}
