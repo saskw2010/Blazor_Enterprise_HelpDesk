@@ -1,0 +1,100 @@
+﻿@page "/iccpdhelpdesk"
+@layout WidelayoutmainLayout
+@inherits Cpdhelpdesk.Pages.IccpdhelpdeskComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using Cpdhelpdesk.Models.Authenticationconn
+@using Cpdhelpdesk.Models
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+@inject Microsoft.Extensions.Localization.IStringLocalizer<Iccpdhelpdesk> L
+<PageTitle>ICCPDHELPDESK</PageTitle>
+<RadzenContent Container="main">
+  <ChildContent>
+    <RadzenHeading Size="H1" style="background-color: #5d717b; display: none; text-align: center" Text="@L["pageTitle.Text"]">
+    </RadzenHeading>
+    <div  class="mosbodybak">
+      <div  class="mosbodybak">
+        <RadzenCard style="background-color: #1990cb; display: block; float: left; height: 206px; margin-left: 16px; margin-top: 16px; position: relative; text-align: center; vertical-align: middle; width: 333px" class="rz-card-mycomponent">
+          <ChildContent>
+            <RadzenImage Path="assets/images/ticket (1).png" style="display: block; float: left; height: 111px; left: 60px; position: relative; top: -20px; visibility: visible; width: 149px">
+            </RadzenImage>
+            <RadzenButton ButtonStyle="ButtonStyle.Info" ButtonType="ButtonType.Submit" Icon="sticky_note_2" style="background-color: #ffffff; color: #3a474d; display: inline-block; float: left; height: 96px; left: -25px; padding-left: 0px; padding-right: 0px; position: relative; text-align: center; top: -20px; vertical-align: baseline; visibility: visible; width: 334px; z-index: 0" Text="@L["button21.Text"]" Click="@Button21Click">
+            </RadzenButton>
+          </ChildContent>
+        </RadzenCard>
+        <RadzenCard style="background-color: #68d5c8; display: block; float: left; height: 206px; margin-left: 16px; margin-top: 16px; position: relative; text-align: center; vertical-align: middle; width: 333px" Visible="@(Security.IsInRole("cpdheldeskadmin"))" class="rz-card-mycomponent">
+          <ChildContent>
+            <RadzenImage Path="assets/images/plane-ticket.png" style="display: block; float: left; height: 111px; left: 80px; position: relative; top: -20px; visibility: visible; width: 133px">
+            </RadzenImage>
+            <RadzenButton ButtonStyle="ButtonStyle.Info" ButtonType="ButtonType.Submit" Icon="admin_panel_settings" style="background-color: #ffffff; color: #3a474d; display: inline-block; float: left; height: 96px; left: -25px; padding-left: 0px; padding-right: 0px; position: relative; text-align: center; top: -20px; vertical-align: baseline; visibility: visible; width: 334px; z-index: 0" Text="@L["button41.Text"]" Click="@Button41Click">
+            </RadzenButton>
+          </ChildContent>
+        </RadzenCard>
+        <RadzenCard style="background-color: #68d5c8; display: block; float: left; height: 206px; margin-left: 16px; margin-top: 16px; position: relative; text-align: center; vertical-align: middle; width: 333px" Visible="false" class="rz-card-mycomponent">
+          <ChildContent>
+            <RadzenImage Path="assets/images/plane-ticket.png" style="display: block; float: left; height: 111px; left: 80px; position: relative; top: -20px; visibility: visible; width: 133px">
+            </RadzenImage>
+            <RadzenButton ButtonStyle="ButtonStyle.Info" ButtonType="ButtonType.Submit" Icon="admin_panel_settings" style="background-color: #ffffff; color: #3a474d; display: inline-block; float: left; height: 96px; left: -25px; padding-left: 0px; padding-right: 0px; position: relative; text-align: center; top: -20px; vertical-align: baseline; visibility: visible; width: 334px; z-index: 0" Text="@englishname" Click="@Button0Click">
+            </RadzenButton>
+          </ChildContent>
+        </RadzenCard>
+        <RadzenCard style="background-color: #1990cb; display: block; float: left; height: 206px; margin-left: 16px; margin-top: 16px; position: relative; text-align: center; vertical-align: middle; width: 333px" class="rz-card-mycomponent">
+          <ChildContent>
+            <RadzenImage Path="assets/images/tickets.png" style="display: block; float: left; height: 111px; left: 80px; position: relative; top: -20px; visibility: visible; width: 121px">
+            </RadzenImage>
+            <RadzenButton ButtonStyle="ButtonStyle.Info" ButtonType="ButtonType.Submit" Icon="sticky_note_2" style="background-color: #ffffff; color: #3a474d; display: inline-block; float: left; height: 96px; left: -25px; padding-left: 0px; padding-right: 0px; position: relative; text-align: center; top: -20px; vertical-align: baseline; visibility: visible; width: 334px; z-index: 0" Text="@L["button31.Text"]" Click="@Button31Click">
+            </RadzenButton>
+          </ChildContent>
+        </RadzenCard>
+        <RadzenCard style="background-color: #68d5c8; display: block; float: left; height: 206px; margin-left: 16px; margin-top: 16px; position: relative; text-align: center; vertical-align: middle; width: 333px" Visible="@(Security.IsInRole("cpdheldeskadmin"))" class="rz-card-mycomponent">
+          <ChildContent>
+            <RadzenImage Path="assets/images/statistics.png" style="display: block; float: left; height: 111px; left: 80px; position: relative; top: -20px; visibility: visible; width: 126px">
+            </RadzenImage>
+            <RadzenButton ButtonStyle="ButtonStyle.Info" ButtonType="ButtonType.Submit" Icon="sticky_note_2" style="background-color: #ffffff; color: #3a474d; display: inline-block; float: left; height: 96px; left: -25px; padding-left: 0px; padding-right: 0px; position: relative; text-align: center; top: -20px; vertical-align: baseline; visibility: visible; width: 334px; z-index: 0" Text="@L["button11.Text"]" Click="@Button11Click">
+            </RadzenButton>
+          </ChildContent>
+        </RadzenCard>
+        <RadzenCard style="background-color: #68d5c8; display: block; float: left; height: 206px; margin-left: 16px; margin-top: 16px; position: relative; text-align: center; vertical-align: middle; width: 333px" class="rz-card-mycomponent">
+          <ChildContent>
+            <RadzenImage Path="assets/images/mypinding.png" style="display: block; float: left; height: 111px; left: 80px; position: relative; top: -20px; visibility: visible; width: 126px">
+            </RadzenImage>
+            <RadzenButton ButtonStyle="ButtonStyle.Info" ButtonType="ButtonType.Submit" Icon="sticky_note_2" style="background-color: #ffffff; color: #3a474d; display: inline-block; float: left; height: 96px; left: -25px; padding-left: 0px; padding-right: 0px; position: relative; text-align: center; top: -20px; vertical-align: baseline; visibility: visible; width: 334px; z-index: 0" Text="@L["button61.Text"]" Click="@Button61Click">
+            </RadzenButton>
+          </ChildContent>
+        </RadzenCard>
+        <RadzenCard style="background-color: #68d5c8; display: block; float: left; height: 206px; margin-left: 16px; margin-top: 16px; position: relative; text-align: center; vertical-align: middle; width: 333px" Visible="@(Security.IsInRole("cpdheldeskadmin"))" class="rz-card-mycomponent">
+          <ChildContent>
+            <RadzenImage Path="assets/images/mypinding.png" style="display: block; float: left; height: 111px; left: 80px; position: relative; top: -20px; visibility: visible; width: 126px">
+            </RadzenImage>
+            <RadzenButton ButtonStyle="ButtonStyle.Info" ButtonType="ButtonType.Submit" Icon="sticky_note_2" style="background-color: #ffffff; color: #3a474d; display: inline-block; float: left; height: 96px; left: -25px; padding-left: 0px; padding-right: 0px; position: relative; text-align: center; top: -20px; vertical-align: baseline; visibility: visible; width: 334px; z-index: 0" Text="@L["button62.Text"]" Click="@Button62Click">
+            </RadzenButton>
+          </ChildContent>
+        </RadzenCard>
+        <RadzenCard style="background-color: #68d5c8; display: block; float: left; height: 206px; margin-left: 16px; margin-top: 16px; position: relative; text-align: center; vertical-align: middle; width: 333px" Visible="@(Security.IsInRole("cpdheldeskadmin"))" class="rz-card-mycomponent">
+          <ChildContent>
+            <RadzenImage Path="assets/images/mypinding.png" style="display: block; float: left; height: 111px; left: 80px; position: relative; top: -20px; visibility: visible; width: 126px">
+            </RadzenImage>
+            <RadzenButton ButtonStyle="ButtonStyle.Info" ButtonType="ButtonType.Submit" Icon="sticky_note_2" style="background-color: #ffffff; color: #3a474d; display: inline-block; float: left; height: 96px; left: -25px; padding-left: 0px; padding-right: 0px; position: relative; text-align: center; top: -20px; vertical-align: baseline; visibility: visible; width: 334px; z-index: 0" Text="@L["button63.Text"]" Click="@Button63Click">
+            </RadzenButton>
+          </ChildContent>
+        </RadzenCard>
+        <RadzenCard style="background-color: #1990cb; display: block; float: left; height: 206px; margin-left: 16px; margin-top: 16px; position: relative; text-align: center; vertical-align: middle; width: 333px" Visible="false" class="rz-card-mycomponent">
+          <ChildContent>
+            <RadzenTextBox Disabled="true" Placeholder="@L["textbox0.Placeholder"]" ReadOnly="false" @bind-Value="@langauageculture" Name="Textbox0">
+            </RadzenTextBox>
+            <RadzenTextBox Disabled="true" Placeholder="@L["textbox3.Placeholder"]" ReadOnly="false" @bind-Value="@languagename" Name="Textbox3">
+            </RadzenTextBox>
+            <RadzenTextBox Disabled="true" Placeholder="@L["textbox2.Placeholder"]" ReadOnly="false" @bind-Value="@Culture" Name="Textbox2">
+            </RadzenTextBox>
+            <RadzenTextBox Disabled="true" Placeholder="@L["textbox1.Placeholder"]" ReadOnly="false" @bind-Value="@englishname" Name="Textbox1">
+            </RadzenTextBox>
+          </ChildContent>
+        </RadzenCard>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>
+
+
