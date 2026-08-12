@@ -1,0 +1,80 @@
+<RadzenCard class="flip-card-main">
+<div class="flip-card">
+<div class="get-started-section">
+<div class="get-started-section__cards">
+<div class="get-started-section__card-number">
+<span>@data.sprModulecatid</span>
+</div>
+<div class="flip-card-inner">
+
+<div class="flip-card-front">
+
+<div class="first hero">
+  <img class="hero-profile-img" src="@data.photopath" alt="">
+  <div class="hero-description-bk"></div>
+  <div class="hero-logo">
+      <img src="assets/images/cpd_logo.png" alt="">
+  </div>
+  <div class="hero-description">
+    <p> @data.FuturecatDesc1  </p>
+  </div>
+  
+  
+
+
+ 
+</div>
+
+
+
+
+</div>
+  
+ <div class="flip-card-back">
+ <div class="secondary hero">
+   <img class="hero-profile-img-bak" src="@data.photopath" alt="">
+  <div class="hero-description-bk"></div>
+  <div class="hero-description-mos">
+  <p> @data.sprModulecatDesc  </p>
+  </div>
+  <div class="hero-logo">
+      <img src="assets/images/cpd_logo.png" alt="">
+  </div>
+ 
+  <div class="hero-btn1">
+  
+   <!-- <a href="@data.FuturecatDesc" target='_blank'>  <div class="get-started-section__card-button"><h3> @data.sprModulecatDesc </h3></div></a> -->
+	<!--<button href="@data.FuturecatDesc" target='_blank'	>@data.sprModulecatDesc</button>	-->
+    <div class="buttons">
+    <a href="https://www.cpd.gov.kw" target="_blank" class="btn-hover color-8">cpd-website</a>
+    </div>
+</div>
+  
+ 						
+						
+ </div>
+                                
+                             
+  
+  </div>  
+  
+ 
+ 
+ 
+ </div>  
+ 
+
+
+
+
+
+
+
+ </div> 
+   </div> 
+
+                                
+                                
+  </div>                                
+                                  
+ </RadzenCard>
